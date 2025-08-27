@@ -1,0 +1,116 @@
+{
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "success": "Succès !",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "confirm": "Confirmer",
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "close": "Fermer",
+    "open": "Ouvrir",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "sort": "Trier",
+    "submit": "Soumettre",
+    "reset": "Réinitialiser"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "about": "À propos",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "blog": "Blog",
+    "contact": "Contact",
+    "language": "Langue"
+  },
+  "home": {
+    "title": "Agence Marketing Professionnelle",
+    "subtitle": "Nous aidons les entreprises à croître grâce à des solutions marketing stratégiques",
+    "description": "Transformez votre marque avec nos services marketing complets. Des campagnes digitales à la stratégie de marque, nous livrons des résultats qui comptent.",
+    "cta": "Commencer",
+    "learnMore": "En Savoir Plus",
+    "features": {
+      "title": "Pourquoi Nous Choisir",
+      "feature1": {
+        "title": "Équipe Experte",
+        "description": "Nos professionnels expérimentés livrent des résultats exceptionnels"
+      },
+      "feature2": {
+        "title": "Résultats Prouvés",
+        "description": "Historique de campagnes réussies et de clients satisfaits"
+      },
+      "feature3": {
+        "title": "Solutions Personnalisées",
+        "description": "Stratégies sur mesure qui s'adaptent aux besoins uniques de votre entreprise"
+      }
+    }
+  },
+  "about": {
+    "title": "À Propos de Notre Agence",
+    "subtitle": "Passionnés par l'excellence marketing",
+    "description": "Nous sommes une agence marketing full-service dédiée à aider les entreprises à atteindre leurs objectifs grâce à des stratégies innovantes et des solutions créatives.",
+    "mission": "Notre mission est d'autonomiser les entreprises avec des stratégies marketing efficaces qui stimulent la croissance et le succès.",
+    "vision": "Être l'agence marketing leader qui transforme la façon dont les entreprises se connectent avec leurs audiences.",
+    "values": {
+      "title": "Nos Valeurs",
+      "creativity": "Créativité",
+      "integrity": "Intégrité",
+      "excellence": "Excellence",
+      "collaboration": "Collaboration"
+    }
+  },
+  "services": {
+    "title": "Nos Services",
+    "subtitle": "Solutions marketing complètes",
+    "digitalMarketing": {
+      "title": "Marketing Digital",
+      "description": "Stratégies complètes de marketing digital incluant SEO, PPC et marketing sur les réseaux sociaux"
+    },
+    "brandStrategy": {
+      "title": "Stratégie de Marque",
+      "description": "Développez des identités de marque convaincantes qui résonnent avec votre audience cible"
+    },
+    "contentCreation": {
+      "title": "Création de Contenu",
+      "description": "Contenu engageant qui raconte votre histoire et stimule l'engagement client"
+    },
+    "analytics": {
+      "title": "Analyses et Rapports",
+      "description": "Insights basés sur les données pour optimiser vos performances marketing"
+    }
+  },
+  "contact": {
+    "title": "Contactez-Nous",
+    "subtitle": "Discutons de vos besoins marketing",
+    "form": {
+      "name": "Nom Complet",
+      "email": "Adresse Email",
+      "phone": "Numéro de Téléphone",
+      "company": "Nom de l'Entreprise",
+      "message": "Message",
+      "send": "Envoyer le Message"
+    },
+    "info": {
+      "address": "123 Rue Marketing, Quartier des Affaires",
+      "phone": "+1 (555) 123-4567",
+      "email": "bonjour@agencemarketing.com",
+      "hours": "Lun-Ven : 9h-18h"
+    }
+  },
+  "footer": {
+    "copyright": "© 2025 Agence Marketing. Tous droits réservés.",
+    "privacy": "Politique de Confidentialité",
+    "terms": "Conditions de Service",
+    "followUs": "Suivez-Nous"
+  },
+  "theme": {
+    "light": "Mode Clair",
+    "dark": "Mode Sombre",
+    "system": "Système"
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "common": {
+    "loading": "Cargando...",
+    "error": "Ocurrió un error",
+    "success": "¡Éxito!",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "confirm": "Confirmar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "close": "Cerrar",
+    "open": "Abrir",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "sort": "Ordenar",
+    "submit": "Enviar",
+    "reset": "Restablecer"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "about": "Acerca de",
+    "services": "Servicios",
+    "portfolio": "Portafolio",
+    "blog": "Blog",
+    "contact": "Contacto",
+    "language": "Idioma"
+  },
+  "home": {
+    "title": "Agencia de Marketing Profesional",
+    "subtitle": "Ayudamos a las empresas a crecer a través de soluciones de marketing estratégicas",
+    "description": "Transforma tu marca con nuestros servicios integrales de marketing. Desde campañas digitales hasta estrategia de marca, entregamos resultados que importan.",
+    "cta": "Comenzar",
+    "learnMore": "Saber Más",
+    "features": {
+      "title": "Por Qué Elegirnos",
+      "feature1": {
+        "title": "Equipo Experto",
+        "description": "Nuestros profesionales experimentados entregan resultados excepcionales"
+      },
+      "feature2": {
+        "title": "Resultados Comprobados",
+        "description": "Historial de campañas exitosas y clientes satisfechos"
+      },
+      "feature3": {
+        "title": "Soluciones Personalizadas",
+        "description": "Estrategias adaptadas que se ajustan a las necesidades únicas de tu negocio"
+      }
+    }
+  },
+  "about": {
+    "title": "Acerca de Nuestra Agencia",
+    "subtitle": "Apasionados por la excelencia en marketing",
+    "description": "Somos una agencia de marketing de servicio completo dedicada a ayudar a las empresas a alcanzar sus objetivos a través de estrategias innovadoras y soluciones creativas.",
+    "mission": "Nuestra misión es empoderar a las empresas con estrategias de marketing efectivas que impulsen el crecimiento y el éxito.",
+    "vision": "Ser la agencia de marketing líder que transforme cómo las empresas se conectan con sus audiencias.",
+    "values": {
+      "title": "Nuestros Valores",
+      "creativity": "Creatividad",
+      "integrity": "Integridad",
+      "excellence": "Excelencia",
+      "collaboration": "Colaboración"
+    }
+  },
+  "services": {
+    "title": "Nuestros Servicios",
+    "subtitle": "Soluciones integrales de marketing",
+    "digitalMarketing": {
+      "title": "Marketing Digital",
+      "description": "Estrategias completas de marketing digital incluyendo SEO, PPC y marketing en redes sociales"
+    },
+    "brandStrategy": {
+      "title": "Estrategia de Marca",
+      "description": "Desarrolla identidades de marca convincentes que resuenen con tu audiencia objetivo"
+    },
+    "contentCreation": {
+      "title": "Creación de Contenido",
+      "description": "Contenido atractivo que cuenta tu historia e impulsa el compromiso del cliente"
+    },
+    "analytics": {
+      "title": "Análisis e Informes",
+      "description": "Insights basados en datos para optimizar el rendimiento de tu marketing"
+    }
+  },
+  "contact": {
+    "title": "Contáctanos",
+    "subtitle": "Hablemos de tus necesidades de marketing",
+    "form": {
+      "name": "Nombre Completo",
+      "email": "Dirección de Email",
+      "phone": "Número de Teléfono",
+      "company": "Nombre de la Empresa",
+      "message": "Mensaje",
+      "send": "Enviar Mensaje"
+    },
+    "info": {
+      "address": "123 Calle Marketing, Distrito de Negocios",
+      "phone": "+1 (555) 123-4567",
+      "email": "hola@agenciademarketing.com",
+      "hours": "Lun-Vie: 9AM-6PM"
+    }
+  },
+  "footer": {
+    "copyright": "© 2025 Agencia de Marketing. Todos los derechos reservados.",
+    "privacy": "Política de Privacidad",
+    "terms": "Términos de Servicio",
+    "followUs": "Síguenos"
+  },
+  "theme": {
+    "light": "Modo Claro",
+    "dark": "Modo Oscuro",
+    "system": "Sistema"
+  }
+}
