@@ -9,7 +9,7 @@ export default function AboutPage() {
   const tNav = useTranslations('navigation');
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white">
+    <div className="min-h-screen mt-18 bg-white dark:bg-black text-black dark:text-white">
       
       
       <div className="container mx-auto px-4 py-16">

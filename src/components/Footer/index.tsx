@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { db } from "../../lib/firebase/firebase";
+import { db } from "../../lib/firebase/firebaseClient";
 import { doc, getDoc, FirestoreDataConverter } from "firebase/firestore";
 import { Button } from "@/components/ui/button";
 import {
@@ -58,7 +58,7 @@ export default function Footer() {
   if (!contactData) return null;
 
   return (
-    <footer className="bg-white dark:bg-black border-t border-border px-4 py-6 mt-auto">
+    <footer className="bg-white dark:bg-black border-t border-border px-4 py-6 mt-auto  ">
       <div className="max-w-7xl mx-auto text-center">
         <div className="flex justify-center gap-3 mb-4">
           {Object.entries(socialConfig).map(([key, { icon, buildHref, isAction }]) => {

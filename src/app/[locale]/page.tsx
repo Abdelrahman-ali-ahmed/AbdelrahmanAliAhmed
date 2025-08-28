@@ -1,9 +1,27 @@
 import { Button } from "@/components/ui/button";
 import ClientWrapper from "@/components/ClientWrapper";
 import { getTranslations } from "next-intl/server";
+import { adminDb } from "@/lib/firebase/firebaseAdmin";
+import { HomeData, localeMap } from "@/lib/types/types";
+import { cookies } from "next/headers";
 
 export default async function Home() {
- const t = await getTranslations("home");
+
+  const t = await getTranslations("home");
+  const cookieStore = await cookies(); // ✅ await here
+  const locale = cookieStore.get("NEXT_LOCALE")?.value ?? "en"; 
+  const key = localeMap[locale] ?? "eng";
+const docRef = adminDb?.collection("content").doc("home");
+const snap = docRef ? await docRef.get() : null;
+const data: HomeData | null = snap?.exists ? (snap.data() as HomeData) : null;
+  console.log(data);
+  
+
+
+
+
+
+
 
   return (
     <ClientWrapper>
@@ -12,15 +30,15 @@ export default async function Home() {
           <div className="w-full max-w-6xl px-4">
           
 
-            <div className="max-w-4xl text-center space-y-10 px-4 mx-auto">
+            <div className="max-w-4xl text-center mt-18 space-y-10 px-4 mx-auto">
               <h1 className="text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 {t('title')}
               </h1>
               <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                {t('subtitle')}
+                {data?.title[key]??t('subtitle')}
               </p>
               <p className="text-lg text-gray-500 dark:text-gray-400 max-w-3xl mx-auto">
-                {t('description')}
+                {data?.content[key]??t('description')}
               </p>
 
               <div className="flex gap-4 justify-center flex-wrap">
