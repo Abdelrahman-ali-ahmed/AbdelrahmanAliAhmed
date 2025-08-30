@@ -14,3 +14,9 @@ export const localeMap: Record<string, string> = {
   en: "eng",
   ar: "ar",
 };
+export  interface LinkDoc {
+  createdAt: Date;   // Firestore timestamp → convert later
+  name: string;
+  url: string;
+  value: boolean;
+}

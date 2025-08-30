@@ -85,24 +85,7 @@
       "description": "Data-driven insights to optimize your marketing performance"
     }
   },
-  "contact": {
-    "title": "Contact Us",
-    "subtitle": "Let's discuss your marketing needs",
-    "form": {
-      "name": "Full Name",
-      "email": "Email Address",
-      "phone": "Phone Number",
-      "company": "Company Name",
-      "message": "Message",
-      "send": "Send Message"
-    },
-    "info": {
-      "address": "123 Marketing Street, Business District",
-      "phone": "+1 (555) 123-4567",
-      "email": "hello@marketingagency.com",
-      "hours": "Mon-Fri: 9AM-6PM"
-    }
-  },
+ 
   "footer": {
     "copyright": "© 2025 Marketing Agency. All rights reserved.",
     "privacy": "Privacy Policy",
@@ -113,5 +96,18 @@
     "light": "Light Mode",
     "dark": "Dark Mode",
     "system": "System"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "name": "Name",
+    "email": "Email",
+    "number": "Number",
+    "brandName": "Brand Name",
+    "message": "Message",
+    "submit": "Submit",
+    "submitting": "Submitting...",
+    "success": "✅ Message Sent Successfully!",
+    "failed": "❌ Failed",
+    "error": "❌ Error"
   }
 }
