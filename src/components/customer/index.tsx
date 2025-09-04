@@ -25,6 +25,7 @@ export default async function CustomerComponent() {
           ...doc.data(),
         } as Customer)
     ) ?? [];
+console.log(customers);
 
 
   return (
