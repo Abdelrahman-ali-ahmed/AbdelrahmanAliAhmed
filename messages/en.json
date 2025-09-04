@@ -29,9 +29,11 @@
     "contact": "Contact",
     "language": "Language"
   },
+  
   "home": {
-    "title": "Professional Marketing Agency",
-    "subtitle": "We help businesses grow through strategic marketing solutions",
+    "title": "Everthing Starts With A Click",
+    "who": "Who Are We?",
+    "subtitle": "The first step towards a bright digital future for your brand",
     "description": "Transform your brand with our comprehensive marketing services. From digital campaigns to brand strategy, we deliver results that matter.",
     "cta": "Get Started",
     "learnMore": "Learn More",
@@ -66,24 +68,8 @@
     }
   },
   "services": {
-    "title": "Our Services",
-    "subtitle": "Comprehensive marketing solutions",
-    "digitalMarketing": {
-      "title": "Digital Marketing",
-      "description": "Complete digital marketing strategies including SEO, PPC, and social media marketing"
-    },
-    "brandStrategy": {
-      "title": "Brand Strategy",
-      "description": "Develop compelling brand identities that resonate with your target audience"
-    },
-    "contentCreation": {
-      "title": "Content Creation",
-      "description": "Engaging content that tells your story and drives customer engagement"
-    },
-    "analytics": {
-      "title": "Analytics & Reporting",
-      "description": "Data-driven insights to optimize your marketing performance"
-    }
+   "services_title": "Our Services: The tools we use to create your success",
+    "services_description": "We provide integrated solutions that ensure your brand has a strong and impactful digital presence. Each service is carefully designed to achieve specific and measurable goals."
   },
  
   "footer": {
@@ -99,6 +85,7 @@
   },
   "contact": {
     "title": "Contact Us",
+     "fillForm": "Fill out the following form, and one of our experts will contact you to discuss your goals and create a clear roadmap for success.",
     "name": "Name",
     "email": "Email",
     "number": "Number",
@@ -109,5 +96,8 @@
     "success": "✅ Message Sent Successfully!",
     "failed": "❌ Failed",
     "error": "❌ Error"
+  },
+  "customers":{
+    "customers_title": "Our Customers"
   }
 }

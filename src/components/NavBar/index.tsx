@@ -5,10 +5,9 @@ import Image from "next/image";
 import LanguageSwitcher from "../LanguageSwitcher";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
-import {Disclosure, DisclosureButton,  DisclosurePanel,} from "@headlessui/react";
+import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import ThemeToggle from "../themeToggle";
-
 
 type NavKey = "home" | "about" | "services" | "contact";
 
@@ -18,9 +17,9 @@ export default function Navbar() {
 
   const navigation: { name: NavKey; href: string }[] = [
     { name: "home", href: "/" },
-    { name: "about", href: "/about" },
-    { name: "services", href: "/services" },
-    { name: "contact", href: "/contact" },
+    { name: "about", href: "#about" },
+    { name: "services", href: "#services" },
+    { name: "contact", href: "#contact" },
   ];
 
   function classNames(...classes: string[]) {
@@ -34,83 +33,95 @@ export default function Navbar() {
       as="nav"
       className="fixed top-0 left-0 w-full z-50 bg-gray-800/50 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10"
     >
-      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-        <div className="relative flex h-16 items-center justify-between">
-          {/* Mobile menu button */}
-          <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-            <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500">
-              <Bars3Icon
-                aria-hidden="true"
-                className="block size-6 group-data-[open]:hidden"
-              />
-              <XMarkIcon
-                aria-hidden="true"
-                className="hidden size-6 group-data-[open]:block"
-              />
-            </DisclosureButton>
-          </div>
+      {({ open }) => (
+        <>
+          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+            <div className="relative flex h-16 items-center justify-between">
+              {/* Mobile menu button */}
+              <div className="flex items-center sm:hidden">
+                <Disclosure.Button className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500">
+                  <Bars3Icon
+                    aria-hidden="true"
+                    className={`h-6 w-6 ${open ? "hidden" : "block"}`}
+                  />
+                  <XMarkIcon
+                    aria-hidden="true"
+                    className={`h-6 w-6 ${open ? "block" : "hidden"}`}
+                  />
+                </Disclosure.Button>
+              </div>
 
-          {/* Logo + Links */}
-          <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-            <Link href="/" className="flex shrink-0 items-center">
-              <Image
-                alt="Your Company"
-                src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-                width={32}
-                height={32}
-                className="h-8 w-auto"
-              />
-            </Link>
+              {/* Left side - Logo + Text */}
+              <div className="flex items-center sm:flex-none flex-1 justify-center sm:justify-start">
+                <Link href="/" className="flex shrink-0 items-center gap-2">
+                  <Image
+                    alt="Ibda Digital Logo"
+                    src="/Ibda-Digtal.png"
+                    width={64}
+                    height={64}
+                    className="h-12 w-auto"
+                    priority
+                  />
+                  <p className="font-bold text-white text-lg">Ibda Digital</p>
+                </Link>
+              </div>
 
-            <div className="hidden sm:ml-6 sm:block">
-              <div className="flex space-x-4">
-                {navigation.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className={classNames(
-                      handleCurrent(item.href)
-                        ? "bg-gray-950/50 text-white"
-                        : "text-gray-300 hover:bg-white/5 hover:text-white",
-                      "rounded-md px-3 py-2 text-sm font-medium"
-                    )}
-                  >
-                    {t(item.name)}
-                  </Link>
-                ))}
+              {/* Center - Navigation Links */}
+              <div className="hidden sm:flex flex-1 justify-center">
+                <div className="flex space-x-6">
+                  {navigation.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className={classNames(
+                        handleCurrent(item.href)
+                          ? "bg-gray-950/50 text-white"
+                          : "text-gray-300 hover:bg-white/5 hover:text-white",
+                        "rounded-md px-4 py-2 text-sm font-medium transition-colors"
+                      )}
+                    >
+                      {t(item.name)}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right side - Theme & Language (Desktop only) */}
+              <div className="hidden sm:flex items-center space-x-3">
+                <LanguageSwitcher />
+                <ThemeToggle />
               </div>
             </div>
           </div>
 
-          {/* Right side */}
-          <div className="absolute inset-y-0 right-0 flex items-center space-x-2 pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            <LanguageSwitcher />
-            <ThemeToggle />
-          </div>
-        </div>
-      </div>
+          {/* Mobile menu */}
+          <Disclosure.Panel className="sm:hidden">
+            <div className="space-y-1 px-2 pt-2 pb-3">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => window.scrollTo(0, 0)} // scroll top on mobile navigation
+                  className={classNames(
+                    handleCurrent(item.href)
+                      ? "bg-gray-950/50 text-white"
+                      : "text-gray-300 hover:bg-white/5 hover:text-white",
+                    "block rounded-md px-3 py-2 text-base font-medium"
+                  )}
+                >
+                  {t(item.name)}
+                </Link>
+              ))}
 
-      {/* Mobile menu */}
-      <DisclosurePanel className="sm:hidden">
-        <div className="space-y-1 px-2 pt-2 pb-3">
-          {navigation.map((item) => (
-            <DisclosureButton
-              key={item.name}
-              as={Link}
-              href={item.href}
-              className={classNames(
-                handleCurrent(item.href)
-                  ? "bg-gray-950/50 text-white"
-                  : "text-gray-300 hover:bg-white/5 hover:text-white",
-                "block rounded-md px-3 py-2 text-base font-medium"
-              )}
-            >
-              {t(item.name)}
-            </DisclosureButton>
-          ))}
-         
-        </div>
-      </DisclosurePanel>
+              {/* Mobile Theme & Language Controls */}
+              <div className="flex items-center justify-center space-x-4 pt-4 border-t border-gray-700 mt-4">
+                <LanguageSwitcher />
+                <ThemeToggle />
+              </div>
+            </div>
+          </Disclosure.Panel>
+        </>
+      )}
     </Disclosure>
   );
 }
