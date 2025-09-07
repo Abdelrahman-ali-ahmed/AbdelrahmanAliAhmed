@@ -1,15 +1,29 @@
 "use client";
 
+import { Suspense } from "react";
+import dynamic from "next/dynamic";
 import Loader from "../Loader";
 import useContactForm from "./useContactForm";
+import "./ContactForm.css";
+
+// Import network background for glass effect
+const LightNetworkBackground = dynamic(() => import('../NetworkBackground/LightNetworkBackground'), {
+  ssr: false,
+  loading: () => <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-green-50 dark:from-gray-900 dark:to-gray-800" />
+});
 
 export default function ContactForm() {
   const { t, formData, loading, success, handleChange, handleSubmit } = useContactForm();
 
   return (
-    <section id="contact" className="py-20">
-      <div className="container mx-auto px-6">
-        <div className="glass-effect rounded-2xl p-8 md:p-12 lg:p-16 max-w-4xl mx-auto bg-white/10 backdrop-blur-md shadow-2xl transition-all duration-500">
+    <section id="contact" className="py-20 relative overflow-hidden">
+      {/* Network Background for Glass Effect */}
+      <Suspense fallback={<div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-green-50 dark:from-gray-900 dark:to-gray-800" />}>
+        <LightNetworkBackground className="contact-section-background" />
+      </Suspense>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="contact-glass-container rounded-2xl p-8 md:p-12 lg:p-16 max-w-4xl mx-auto">
           {/* Header */}
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-5xl font-extrabold mb-4 reveal bg-gradient-to-r from-[#30C59B] to-[#00A3FF] bg-clip-text text-transparent">
@@ -39,7 +53,10 @@ export default function ContactForm() {
                   value={formData.name}
                   onChange={handleChange}
                   aria-label={t("name")}
-                  className="w-full bg-gray-800/50 border border-gray-700 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition"
+                  className="w-full glass-input rounded-lg py-3 px-4
+                             focus:outline-none focus:ring-2 focus:ring-cyan-500
+                             placeholder:text-gray-600 dark:placeholder:text-gray-400
+                             text-black dark:text-white"
                   required
                 />
                 <input
@@ -49,7 +66,10 @@ export default function ContactForm() {
                   value={formData.number}
                   onChange={handleChange}
                   aria-label={t("number")}
-                  className="w-full bg-gray-800/50 border border-gray-700 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition"
+                  className="w-full glass-input rounded-lg py-3 px-4
+                             focus:outline-none focus:ring-2 focus:ring-cyan-500
+                             placeholder:text-gray-600 dark:placeholder:text-gray-400
+                             text-black dark:text-white"
                   required
                 />
               </div>
@@ -61,7 +81,10 @@ export default function ContactForm() {
                   value={formData.email}
                   onChange={handleChange}
                   aria-label={t("email")}
-                  className="w-full bg-gray-800/50 border border-gray-700 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition"
+                  className="w-full glass-input rounded-lg py-3 px-4
+                             focus:outline-none focus:ring-2 focus:ring-cyan-500
+                             placeholder:text-gray-600 dark:placeholder:text-gray-400
+                             text-black dark:text-white"
                   required
                 />
               </div>
@@ -73,7 +96,10 @@ export default function ContactForm() {
                   value={formData.brandName}
                   onChange={handleChange}
                   aria-label={t("brandName")}
-                  className="w-full bg-gray-800/50 border border-gray-700 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition"
+                  className="w-full glass-input rounded-lg py-3 px-4
+                             focus:outline-none focus:ring-2 focus:ring-cyan-500
+                             placeholder:text-gray-600 dark:placeholder:text-gray-400
+                             text-black dark:text-white"
                 />
               </div>
               <div className="reveal">
@@ -84,7 +110,10 @@ export default function ContactForm() {
                   onChange={handleChange}
                   aria-label={t("message")}
                   rows={4}
-                  className="w-full bg-gray-800/50 border border-gray-700 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition"
+                  className="w-full glass-input rounded-lg py-3 px-4 resize-none
+                             focus:outline-none focus:ring-2 focus:ring-cyan-500
+                             placeholder:text-gray-600 dark:placeholder:text-gray-400
+                             text-black dark:text-white"
                 />
               </div>
               <div className="text-center reveal">

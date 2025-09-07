@@ -1,15 +1,23 @@
 'use client';
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import { useTranslations } from 'next-intl';
 import { Button } from "@/components/ui/button";
-import NetworkBackground from '../NetworkBackground';
+import dynamic from 'next/dynamic';
+
+// Use lighter network background to reduce bundle size
+const LightNetworkBackground = dynamic(() => import('../NetworkBackground/LightNetworkBackground'), {
+  ssr: false,
+  loading: () => <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-green-50 dark:from-gray-900 dark:to-gray-800" />
+});
 export default function HomeComponent() {
   const t = useTranslations("home");
 
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-black text-black dark:text-white transition-all duration-300 relative overflow-hidden">
-      <NetworkBackground className="z-0" />
+      <Suspense fallback={<div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-green-50 dark:from-gray-900 dark:to-gray-800" />}>
+        <LightNetworkBackground className="z-0" />
+      </Suspense>
       <div className="flex-1 flex flex-col items-center justify-center relative z-10 content-overlay">
         <div className="w-full max-w-6xl px-4">
           <div className="max-w-4xl text-center mt-18 space-y-10 px-4 mx-auto content-backdrop rounded-3xl py-12">

@@ -19,14 +19,14 @@
   filter: brightness(1.2) contrast(1.1);
 }
 
-/* Enhanced visibility for dark mode */
+/* Enhanced visibility for dark mode - more prominent */
 .dark .network-background canvas {
-  filter: brightness(1.4) contrast(1.3) saturate(1.2);
+  filter: brightness(1.6) contrast(1.5) saturate(1.4);
 }
 
-/* Light mode enhancement */
+/* Light mode enhancement - more prominent */
 .network-background canvas {
-  filter: brightness(1.1) contrast(1.2) saturate(1.1);
+  filter: brightness(1.3) contrast(1.4) saturate(1.3);
 }
 
 /* Ensure content is above the background */
@@ -51,7 +51,7 @@
   transition: all 0.3s ease-in-out;
 }
 
-/* Add glow effect to make network more visible */
+/* Add enhanced glow effect to make network more visible */
 .network-background::before {
   content: '';
   position: absolute;
@@ -59,11 +59,11 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(48, 197, 155, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle at 50% 50%, rgba(0, 163, 255, 0.15) 0%, rgba(48, 197, 155, 0.1) 50%, transparent 80%);
   pointer-events: none;
   z-index: 1;
 }
 
 .dark .network-background::before {
-  background: radial-gradient(circle at 50% 50%, rgba(48, 197, 155, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle at 50% 50%, rgba(48, 197, 155, 0.2) 0%, rgba(0, 163, 255, 0.15) 50%, transparent 80%);
 }

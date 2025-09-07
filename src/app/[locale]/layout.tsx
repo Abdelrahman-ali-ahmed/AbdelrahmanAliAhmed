@@ -1,5 +1,4 @@
 import { ThemeProvider } from "next-themes";
-import Providers from "@/lib/redux/provider";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -27,17 +26,13 @@ export default async function LocaleLayout({
 
   // ✅ Return layout with <html> root
   return (
- 
         <NextIntlClientProvider messages={messages}>
           <LocaleHandler locale={locale} />
-          <Providers>
-            <ThemeProvider attribute="class" enableSystem defaultTheme="system">
-              <Navbar />
-              {children}
-              <Footer />
-            </ThemeProvider>
-          </Providers>
+          <ThemeProvider attribute="class" enableSystem defaultTheme="system">
+            <Navbar />
+            {children}
+            <Footer />
+          </ThemeProvider>
         </NextIntlClientProvider>
-     
   );
 }

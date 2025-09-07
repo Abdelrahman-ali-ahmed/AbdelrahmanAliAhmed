@@ -2,8 +2,16 @@
 import { Button } from '@/components/ui/button'
 import { useTheme } from 'next-themes'
 import React, { useEffect, useState } from 'react'
-import { FaMoon, FaSun } from 'react-icons/fa'
 import { useTranslations } from 'next-intl'
+
+// CSS-based icons to reduce bundle size
+const SunIcon = () => (
+  <div className="h-4 w-4 rounded-full bg-yellow-400 relative before:absolute before:inset-[-2px] before:rounded-full before:border-2 before:border-yellow-400 before:border-dashed" />
+);
+
+const MoonIcon = () => (
+  <div className="h-4 w-4 rounded-full bg-slate-600 relative before:absolute before:top-[-1px] before:right-[-1px] before:h-3 before:w-3 before:rounded-full before:bg-white dark:before:bg-slate-900" />
+);
 
 export default function ThemeToggle() {
     const { theme, setTheme } = useTheme()
@@ -26,7 +34,7 @@ export default function ThemeToggle() {
                 className='rounded-full'
                 disabled
             >
-                <FaSun className='h-4 w-4' />
+                <SunIcon />
             </Button>
         )
     }
@@ -39,8 +47,12 @@ export default function ThemeToggle() {
             onClick={toggleTheme}
             title={theme === 'light' ? t('dark') : t('light')}
         >
-            <FaSun className='absolute h-4 w-4 rotate-0 scale-100 transition-all dark:rotate-90 dark:scale-0' />
-            <FaMoon className='absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100'/>
+            <div className='absolute rotate-0 scale-100 transition-all dark:rotate-90 dark:scale-0'>
+                <SunIcon />
+            </div>
+            <div className='absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100'>
+                <MoonIcon />
+            </div>
         </Button>
     )
 }

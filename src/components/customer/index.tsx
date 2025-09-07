@@ -19,7 +19,7 @@ export default async function CustomerComponent() {
 
   const customers: Customer[] =
     snap?.docs.map(
-      (doc) =>
+      (doc: { id: string; data: () => Record<string, unknown> }) =>
         ({
           id: doc.id,
           ...doc.data(),

@@ -1,0 +1,150 @@
+/* Enhanced Glass Effect for Contact Form */
+.contact-glass-container {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.05)
+  );
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .contact-glass-container {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.05)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.contact-glass-container:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0.08)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.dark .contact-glass-container:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.08)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Glass input fields */
+.glass-input {
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  transition: all 0.3s ease;
+}
+
+.dark .glass-input {
+  background: rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.glass-input:focus {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  box-shadow: 
+    0 0 0 2px rgba(6, 182, 212, 0.3),
+    0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dark .glass-input:focus {
+  background: rgba(0, 0, 0, 0.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.glass-input:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.dark .glass-input:hover {
+  background: rgba(0, 0, 0, 0.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Enhanced network visibility behind glass */
+.contact-section-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  opacity: 0.8;
+}
+
+.contact-section-background canvas {
+  filter: brightness(1.4) contrast(1.3) saturate(1.2) !important;
+}
+
+.dark .contact-section-background canvas {
+  filter: brightness(1.8) contrast(1.6) saturate(1.5) !important;
+}
+
+/* Subtle glow effect for the glass container */
+.contact-glass-container::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    45deg,
+    rgba(48, 197, 155, 0.1),
+    rgba(0, 163, 255, 0.1),
+    rgba(48, 197, 155, 0.1)
+  );
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.contact-glass-container:hover::before {
+  opacity: 1;
+}
+
+/* Frosted glass effect for better text readability */
+.glass-text-overlay {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+
+.dark .glass-text-overlay {
+  background: rgba(0, 0, 0, 0.1);
+}
