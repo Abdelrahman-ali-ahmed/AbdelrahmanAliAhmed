@@ -17,9 +17,7 @@ export default async function Home() {
       <AboutComponent />
       <ServiceComponent />
       <CustomerComponent />
-      
-      <ContactForm  />
-       
+      <ContactForm  /> 
     </ClientWrapper>
   );
 }
