@@ -54,15 +54,7 @@ export default function Navbar() {
               {/* Left side - Logo + Text */}
               <div className="flex items-center sm:flex-none flex-1 justify-center sm:justify-start">
                 <Link href="/" className="flex shrink-0 items-center gap-2">
-                  <Image
-                    alt="Ibda Digital Logo"
-                    src="/Ibda-Digtal.png"
-                    width={64}
-                    height={64}
-                    className="h-12 w-auto"
-                    priority
-                  />
-                  <p className="font-bold text-white text-lg">Ibda Digital</p>
+                  <p className="font-bold text-white text-lg">AbdelRahman</p>
                 </Link>
               </div>
 

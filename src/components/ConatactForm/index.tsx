@@ -5,12 +5,10 @@ import dynamic from "next/dynamic";
 import Loader from "../Loader";
 import useContactForm from "./useContactForm";
 import "./ContactForm.css";
+import NetworkBackgroundWrapper from "../NetworkBackground/NetworkBackgroundWrapper";
 
 // Import network background for glass effect
-const LightNetworkBackground = dynamic(() => import('../NetworkBackground/LightNetworkBackground'), {
-  ssr: false,
-  loading: () => <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-green-50 dark:from-gray-900 dark:to-gray-800" />
-});
+
 
 export default function ContactForm() {
   const { t, formData, loading, success, handleChange, handleSubmit } = useContactForm();
@@ -18,9 +16,7 @@ export default function ContactForm() {
   return (
     <section id="contact" className="py-20 relative overflow-hidden">
       {/* Network Background for Glass Effect */}
-      <Suspense fallback={<div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-green-50 dark:from-gray-900 dark:to-gray-800" />}>
-        <LightNetworkBackground className="contact-section-background" />
-      </Suspense>
+<NetworkBackgroundWrapper />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="contact-glass-container rounded-2xl p-8 md:p-12 lg:p-16 max-w-4xl mx-auto">

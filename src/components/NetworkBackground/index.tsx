@@ -6,6 +6,7 @@ import { loadSlim } from "@tsparticles/slim";
 import type { Engine } from "@tsparticles/engine";
 import { useTheme } from "next-themes";
 import "./index.css";
+import { firstColor, secondColor } from "../Color";
 
 interface NetworkBackgroundProps {
   className?: string;
@@ -56,19 +57,19 @@ export default function NetworkBackground({ className = "" }: NetworkBackgroundP
           },
           repulse: {
             distance: 150,
-            duration: 0.6,
+            duration: 0.8,
           },
         },
       },
       particles: {
         color: {
-          value: theme === 'dark' ? "#30C59B" : "#00A3FF",
+          value: theme === 'dark' ?  secondColor : firstColor  ,
         },
         links: {
-          color: theme === 'dark' ? "#30C59B" : "#00A3FF",
+          color: theme === 'dark' ? secondColor  : firstColor ,
           distance: 140,
           enable: true,
-          opacity: theme === 'dark' ? 0.8 : 0.7,
+          opacity: theme === 'dark' ? 0.9 : 0.7,
           width: 2.5,
           triangles: {
             enable: false,
@@ -81,7 +82,7 @@ export default function NetworkBackground({ className = "" }: NetworkBackgroundP
             default: "bounce" as const,
           },
           random: true,
-          speed: 1.2,
+          speed: 5,
           straight: false,
           attract: {
             enable: false,
@@ -90,9 +91,9 @@ export default function NetworkBackground({ className = "" }: NetworkBackgroundP
         number: {
           density: {
             enable: true,
-            area: 600,
+            area: 800,
           },
-          value: 80,
+          value: 300,
         },
         opacity: {
           value: theme === 'dark' ? 0.9 : 0.7,
@@ -110,7 +111,7 @@ export default function NetworkBackground({ className = "" }: NetworkBackgroundP
           value: { min: 2, max: 6 },
           animation: {
             enable: true,
-            speed: 2.5,
+            speed: 10,
             minimumValue: 1,
             sync: false,
           },

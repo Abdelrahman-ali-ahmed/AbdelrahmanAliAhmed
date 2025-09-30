@@ -13,7 +13,7 @@ export default async function Home() {
 
   return (
     <ClientWrapper>
-      <HomeComponent     />
+      <HomeComponent/>
       <AboutComponent />
       <ServiceComponent />
       <CustomerComponent />
