@@ -1,18 +1,14 @@
 
-
-import React from 'react';
 import { Button } from "@/components/ui/button";
-import { getTranslations } from 'next-intl/server';
 import Link from "next/link";
-import {  gradientColor, gradientColorBorderDark, gradientColorBorderLight, gradientColorLeft, gradientColorRight, gradientColorTextDark, gradientTextColor, hoverButtonColorDark, hoverButtonColorLight } from '../Color';
+import {  backgroundFirstColorDark, backgroundSecondColorLight, gradientColor, gradientColorBorderDark, gradientColorBorderLight, gradientColorLeft, gradientColorRight,  gradientTextColor, hoverButtonColorDark, hoverButtonColorLight } from '../Color';
 import { getPosts } from './logic/getHome';
 import TypingText from '../TypingText';
 import NetworkBackgroundWrapper from '../NetworkBackground/NetworkBackgroundWrapper';
 
 export default async function HomeComponent() {
-  const t = await getTranslations("home");
-  const {title, content} = await getPosts  ();
-console.log(title);
+  const {title, content,CVLink,t} = await getPosts  ();
+
 
   return (
     <div className={`min-h-screen flex flex-col bg-white dark:bg-black text-black dark:text-white transition-all duration-300 relative overflow-hidden`}>
@@ -24,7 +20,7 @@ console.log(title);
               {t('title')}
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              <TypingText text={title} />
+              <TypingText text1={title} text2={t('typing_string')} text3={t('typing_string2')} />
             </p>
            
 
@@ -51,6 +47,16 @@ console.log(title);
     {t("learnMore")}
   </Button> </Link>
 </div>
+<Link href={CVLink} target="_blank" rel="noopener noreferrer">
+  <Button
+    variant="outline"
+    size="lg"
+    className={`px-8 py-3 border-2 ${backgroundFirstColorDark  } ${backgroundSecondColorLight }
+    ${hoverButtonColorDark} ${hoverButtonColorLight} text-white hover:text-white  transition-all duration-300`}
+  >
+    {t("get_cv")}
+  </Button>
+</Link>
           </div>
         </div>
       </div>

@@ -40,7 +40,7 @@ export default function NetworkBackground({ className = "" }: NetworkBackgroundP
       interactivity: {
         events: {
           onClick: {
-            enable: true,
+            enable: false,
             mode: "push",
           },
           onHover: {
@@ -66,7 +66,7 @@ export default function NetworkBackground({ className = "" }: NetworkBackgroundP
           value: theme === 'dark' ?  secondColor : firstColor  ,
         },
         links: {
-          color: theme === 'dark' ? secondColor  : firstColor ,
+          color: theme === 'dark' ? firstColor   : secondColor ,
           distance: 140,
           enable: true,
           opacity: theme === 'dark' ? 0.9 : 0.7,
@@ -82,7 +82,7 @@ export default function NetworkBackground({ className = "" }: NetworkBackgroundP
             default: "bounce" as const,
           },
           random: true,
-          speed: 5,
+          speed: 8,
           straight: false,
           attract: {
             enable: false,
@@ -91,7 +91,7 @@ export default function NetworkBackground({ className = "" }: NetworkBackgroundP
         number: {
           density: {
             enable: true,
-            area: 800,
+            area: 1200,
           },
           value: 300,
         },

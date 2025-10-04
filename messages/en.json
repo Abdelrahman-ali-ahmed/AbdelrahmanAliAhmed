@@ -29,10 +29,17 @@
     "contact": "Contact",
     "language": "Language"
   },
+  "technologies": {
+    "title": "Technologies",
+    "subtitle": "Technologies"
+  },
   
   "home": {
     "title": "Abdelrahman Ali Ahmed",
     "who": "Who Are Me?",
+    "get_cv": "Get My CV",
+    "typing_string":"Built with Tailwind ⚡",
+    "typing_string2":"Powered by Firebase 🔥",
     "subtitle": "The first step towards a bright digital future for your brand",
     "description": "Transform your brand with our comprehensive marketing services. From digital campaigns to brand strategy, we deliver results that matter.",
     "cta": "Get Started",

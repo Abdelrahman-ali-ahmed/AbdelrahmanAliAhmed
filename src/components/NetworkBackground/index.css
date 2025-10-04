@@ -50,20 +50,3 @@
 .content-backdrop {
   transition: all 0.3s ease-in-out;
 }
-
-/* Add enhanced glow effect to make network more visible */
-.network-background::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(0, 163, 255, 0.15) 0%, rgba(48, 197, 155, 0.1) 50%, transparent 80%);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.dark .network-background::before {
-  background: radial-gradient(circle at 50% 50%, rgba(48, 197, 155, 0.2) 0%, rgba(0, 163, 255, 0.15) 50%, transparent 80%);
-}

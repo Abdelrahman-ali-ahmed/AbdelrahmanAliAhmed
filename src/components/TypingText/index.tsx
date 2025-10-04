@@ -2,15 +2,15 @@
 
 import { TypeAnimation } from "react-type-animation";
 
-export default function TypingText({ text }: { text: string }) {
+export default function TypingText({ text1,text2,text3 }: { text1: string,text2: string,text3: string }) {
   return (
     <TypeAnimation
       sequence={[
-        text,   // use your server-fetched text
+        text1,   // use your server-fetched text
         1000,
-        "Built with Tailwind ⚡",
+        text2,
         1000,
-        "Powered by Firebase 🔥",
+        text3,
         1000,
       ]}
       wrapper="span"
