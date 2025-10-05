@@ -12,11 +12,11 @@ export type ContactData = {
 export interface HomeData {
   title: { [key: string]: string };
   content: { [key: string]: string };
-}
-export const localeMap: Record<string, string> = {
-  en: "eng",
-  ar: "ar",
-};
+  }
+  export const localeMap: Record<string, string> = {
+    en: "eng",
+    ar: "ar",
+  };
 export type Technology = {
   id: string;
   name: string;
@@ -50,4 +50,13 @@ export interface Customer {
   };
   publicId: string;
   createdAt: Timestamp; // or FirebaseFirestore.Timestamp if using admin
+}
+export  interface Project {
+  id: string;
+  title: { ar: string; eng: string };
+  content: { ar: string; eng: string };
+  imageUrl: string;
+  liveLink: string;
+  src: string;
+  category: string;
 }

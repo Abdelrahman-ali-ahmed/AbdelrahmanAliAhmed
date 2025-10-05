@@ -2,7 +2,7 @@ import AboutComponent from "@/components/about";
 import ClientWrapper from "@/components/ClientWrapper";
 import ContactForm from "@/components/ConatactForm";
 import HomeComponent from "@/components/home";
-import ServiceComponent from "@/components/service";
+import ProjectComponent from "@/components/Project";
 import TechnologyComponent from "@/components/Technology";
 
 
@@ -15,7 +15,7 @@ export default async function Home() {
     <ClientWrapper>
       <HomeComponent/>
       <AboutComponent />
-      <ServiceComponent />
+      <ProjectComponent />
       <TechnologyComponent />
       <ContactForm  /> 
     </ClientWrapper>
