@@ -74,9 +74,8 @@
       "collaboration": "Collaboration"
     }
   },
-  "services": {
-   "services_title": "Our Services: The tools we use to create your success",
-    "services_description": "We provide integrated solutions that ensure your brand has a strong and impactful digital presence. Each service is carefully designed to achieve specific and measurable goals."
+  "projects": {
+   "title": "Projects"
   },
  
   "footer": {

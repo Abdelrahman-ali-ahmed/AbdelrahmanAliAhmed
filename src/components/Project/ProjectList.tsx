@@ -1,7 +1,5 @@
 "use client";
-
 import React, { useState } from "react";
-import Image from "next/image";
 import { Project } from "@/lib/types/types";
 import { backgroundFirstColorDark, backgroundFirstColorLight, backgroundGradientReversedColorHoverDark, backgroundGradientReversedColorHoverLight, backgroundHoverFirstColorDark, backgroundHoverFirstColorLight, backgroundHoverSecondColorDark, backgroundHoverSecondColorLight, backgroundSecondColorDark, backgroundSecondColorLight, gradientColor, gradientColorBorderDark, gradientColorBorderLight, gradientTextColor } from "../Color";
 import ProjectCard from "./Projectcard";
@@ -47,13 +45,6 @@ export default function ProjectList({
             <h3 className={`text-3xl font-extrabold mb-4 ${gradientTextColor}`}>
               {activeProject?.title[localeKey]}
             </h3>
-            <Image
-              src={activeProject.imageUrl}
-              alt={activeProject?.title[localeKey]}
-              width={800}
-              height={400}
-              className="rounded-xl mb-4"
-            />
             <p className="dark:text-gray-300 text-black leading-relaxed mb-4">
               {activeProject?.content[localeKey]}
             </p>

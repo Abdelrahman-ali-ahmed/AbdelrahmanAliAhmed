@@ -1,12 +1,13 @@
-import {  backgroundFirstColorLight, backgroundSecondColorDark,  gradientColorFirstTextDark, gradientColorSecondTextLight} from "../Color";
+import {  backgroundFirstColorDark, backgroundFirstColorLight, backgroundSecondColorDark,  backgroundSecondColorLight,  gradientColorFirstTextDark, gradientColorSecondTextLight} from "../Color";
 import { getProjects } from "./Logic/getProjects";
 import ProjectList from "./ProjectList";
 
 
 
 export default async function ProjectComponent() {
-  const { t, key, data } = await getProjects ();
+  const { t, key, data ,projectTypes } = await getProjects ();
 
+ 
   return (
     <section
       id="projects"
@@ -15,14 +16,30 @@ export default async function ProjectComponent() {
       <div className="container mx-auto px-6 transition-all duration-300">
         <div className="text-center mb-16">
           <h2 className={`text-4xl md:text-5xl font-extrabold mb-4 reveal ${gradientColorFirstTextDark} ${gradientColorSecondTextLight}`}>
-            {t("services_title")}
+            {t("title")}
           </h2>
-          <p
-            className="text-lg max-w-3xl mx-auto reveal dark:text-white text-black"
-            style={{ transitionDelay: "150ms" }}
-          >
-            {t("services_description")}
-          </p>
+       <ul
+  className={`flex flex-wrap justify-center flex-col md:flex-row items-center gap-6 
+  p-6 mx-auto w-full max-w-5xl 
+  ${backgroundSecondColorLight} ${backgroundFirstColorDark} 
+  rounded-2xl shadow-lg`}
+>
+  {projectTypes.map((item) => (
+    <li
+      key={item}
+      className={`text-base w-full md:w-fit  sm:text-lg font-medium 
+      px-6 py-3 rounded-xl cursor-pointer 
+      transition-all duration-300 ease-in-out 
+      text-white
+      transform-gpu origin-center
+      hover:scale-110 hover:shadow-md  hover:mx-0 md:hover:mx-3
+      ${backgroundSecondColorDark} ${backgroundFirstColorLight}`}
+    >
+      {item}
+    </li>
+  ))}
+</ul>
+
         </div>
 
         {/* Display projects fetched from Firestore */}
