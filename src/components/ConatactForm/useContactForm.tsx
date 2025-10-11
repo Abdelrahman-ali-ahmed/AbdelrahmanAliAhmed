@@ -8,7 +8,6 @@ export default function useContactForm() {
     name: "",
     email: "",
     number: "",
-    brandName: "",
     message: "",
   });
   const [loading, setLoading] = useState(false);
@@ -22,8 +21,6 @@ export default function useContactForm() {
   e.preventDefault();
   setLoading(true);
   setSuccess(null);
-
-  // ✅ simple validation
   if (!formData.name || !formData.email || !formData.message) {
     setSuccess(t("validationError")); 
     setLoading(false);
@@ -31,7 +28,6 @@ export default function useContactForm() {
   }
 
   try {
-    // 👉 get link from Firestore instead of hardcoding
     const link  = await getTrueLinks();
 
     if ( !link?.url) {
@@ -50,7 +46,6 @@ export default function useContactForm() {
         name: "",
         email: "",
         number: "",
-        brandName: "",
         message: "",
       });
     } else {

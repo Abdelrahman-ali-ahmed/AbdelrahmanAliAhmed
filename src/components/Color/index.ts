@@ -4,6 +4,12 @@ export const secondColor = "#C53A94";
 // Hover
 export const hoverButtonColorDark = "dark:hover:bg-[#C53A94]";
 export const hoverButtonColorLight = "hover:bg-[#0965C0]";
+export const hoverCardColorGlassDark = "dark:hover:bg-[#C53A94]/10";
+export const hoverCardColorGlassLight = "hover:bg-[#0965C0]/15";
+
+//focus
+export const focusInputColorDark = "dark:focus:ring-[#C53A94]";
+export const focusInputColorLight = "focus:ring-[#0965C0]";
 
 // Background
 export const backgroundFirstColorDark = "dark:bg-[#0965C0]";
@@ -40,7 +46,8 @@ export const gradientColorSecondTextLight = "text-[#C53A94]";
 export const gradientColorFirstTextDark = "dark:text-[#0965C0]";
 
 export const gradientTextColor =
-  "bg-gradient-to-r from-[#0965C0] to-[#C53A94] bg-clip-text text-transparent";
+ "bg-gradient-to-r from-[#0965C0] to-[#C53A94] bg-clip-text text-transparent"
+
 
 // inject them as CSS variables
 if (typeof document !== "undefined") {

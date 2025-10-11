@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import React from 'react';
 import { getTechnology } from './logic/getTechnology';
+import { gradientTextColor } from '../Color';
 
 
 export default async function TechnologyComponent() {
@@ -11,7 +12,7 @@ console.log("tech",data);
   return (
        <section className="py-12 container mx-auto px-6">
       {/* Title */}
-      <h2 className="text-4xl font-bold mb-10 text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+      <h2 className={`text-4xl font-bold mb-10 h-fit text-center ${gradientTextColor} `}>
         {t("title")} ({data?.length})
       </h2>
 

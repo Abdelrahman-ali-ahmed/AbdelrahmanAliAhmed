@@ -7,7 +7,7 @@
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
   border: 5px solid transparent;
-  background: conic-gradient(from 0deg, #30C59B, #00A3FF) border-box;
+  background: conic-gradient(from 0deg, #C53A94, #0965C0) border-box;
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);

@@ -1,13 +1,14 @@
+  "use client";
 import {  backgroundFirstColorDark, backgroundFirstColorLight, backgroundSecondColorDark,  backgroundSecondColorLight,  gradientColorFirstTextDark, gradientColorSecondTextLight} from "../Color";
-import { getProjects } from "./Logic/getProjects";
+import Loader from "../Loader";
+import useProjects from "./hooks/usePojects";
 import ProjectList from "./ProjectList";
 
 
 
-export default async function ProjectComponent() {
-  const { t, key, data ,projectTypes } = await getProjects ();
+export default function ProjectComponent() {
+  const { t, data, projectTypes, projectType, setProjectType, loading, locale, key } =useProjects();
 
- 
   return (
     <section
       id="projects"
@@ -34,6 +35,7 @@ export default async function ProjectComponent() {
       transform-gpu origin-center
       hover:scale-110 hover:shadow-md  hover:mx-0 md:hover:mx-3
       ${backgroundSecondColorDark} ${backgroundFirstColorLight}`}
+      onClick={() => setProjectType(item)}
     >
       {item}
     </li>
@@ -41,9 +43,13 @@ export default async function ProjectComponent() {
 </ul>
 
         </div>
+{loading?(
+  <div className="w-full my-4 flex justify-center items-center">
+  <Loader/>
+</div>):(
+  <ProjectList data={data} localeKey={key} />
+)}
 
-        {/* Display projects fetched from Firestore */}
-        <ProjectList data={data} localeKey={key} />
       </div>
     </section>
   );

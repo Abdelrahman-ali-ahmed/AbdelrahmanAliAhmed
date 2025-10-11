@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Marketing Agency - Professional Marketing Solutions",
-  description: "Transform your business with our comprehensive marketing services. Expert team, proven results, custom solutions.",
+  title: "Abdelrahman Ali Ahmed",
+  description: "Frontend Developer .",
 };
 
 // Root layout - required by Next.js App Router
