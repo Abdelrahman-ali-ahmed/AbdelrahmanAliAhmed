@@ -13,7 +13,7 @@ console.log("tech",data);
        <section className="py-12 container mx-auto px-6">
       {/* Title */}
       <h2 className={`text-4xl font-bold mb-10 h-fit text-center ${gradientTextColor} `}>
-        {t("title")} ({data?.length})
+        {t("title")} 
       </h2>
 
       {/* Grid */}

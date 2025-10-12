@@ -77,9 +77,12 @@
   "projects": {
    "title": "Projects"
   },
+  "experience":{
+    "title": "Experience"
+  },
  
   "footer": {
-    "copyright": "© 2025 Marketing Agency. All rights reserved.",
+    "copyright": "  © Abdelrahman Ali — Frontend Developer",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
     "followUs": "Follow Us"

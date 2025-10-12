@@ -1,61 +1,16 @@
 'use client';
-
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { useTranslations } from "next-intl";
-import { db } from "../../lib/firebase/firebaseClient";
-import { doc, getDoc, FirestoreDataConverter } from "firebase/firestore";
 import { Button } from "@/components/ui/button";
-import {
-  Facebook,
-  Instagram,
-  Linkedin,
-  Mail,
-  Phone,
-  MessageCircle,
-} from "lucide-react";
+
 import { ContactData } from "@/lib/types/types";
-
-// ✅ Firestore Converter for ContactData
-const contactConverter: FirestoreDataConverter<ContactData> = {
-  toFirestore: (data: ContactData) => data,
-  fromFirestore: (snap) => snap.data() as ContactData,
-};
-
-const socialConfig: Record<
-  keyof ContactData,
-  { icon: React.ReactNode; buildHref?: (val: string) => string; isAction?: boolean }
-> = {
-  facebook: { icon: <Facebook className="h-5 w-5" />, buildHref: (v) => v },
-  instagram: { icon: <Instagram className="h-5 w-5" />, buildHref: (v) => v },
-  linkedin: { icon: <Linkedin className="h-5 w-5" />, buildHref: (v) => v },
-  whatsapp: {
-    icon: <MessageCircle className="h-5 w-5" />,
-    buildHref: (v) => `https://wa.me/${v.replace(/[^0-9]/g, "")}`,
-  },
-  phone: { icon: <Phone className="h-5 w-5" />, isAction: true },
-  email: {
-    icon: <Mail className="h-5 w-5" />,
-    buildHref: (v) => `https://mail.google.com/mail/?view=cm&fs=1&to=${v}`,
-  },
-};
+import useContactData from "./hooks/useContactData";
 
 export default function Footer() {
-  const t = useTranslations("footer");
-  const [contactData, setContactData] = useState<ContactData | null>(null);
+   const t = useTranslations("footer");
+  const { contactData, loading,socialConfig } = useContactData();
   const [showPhone, setShowPhone] = useState(false);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const docRef = doc(db, "content", "contact").withConverter(contactConverter);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        setContactData(docSnap.data()); // now strongly typed 🎉
-      }
-    };
-    fetchData();
-  }, []);
-
-  if (!contactData) return null;
+  if (loading || !contactData) return null;
 
   return (
     <footer className="bg-white dark:bg-black border-t border-border px-4 py-6 mt-auto  ">
@@ -64,7 +19,6 @@ export default function Footer() {
           {Object.entries(socialConfig).map(([key, { icon, buildHref, isAction }]) => {
             const val = contactData[key as keyof ContactData];
             if (!val) return null;
-
             if (isAction && key === "phone") {
               return (
                 <Button

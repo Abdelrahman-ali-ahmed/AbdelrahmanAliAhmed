@@ -29,13 +29,15 @@ export default function useContactForm() {
 
   try {
     const link  = await getTrueLinks();
+    console.log("link", link);
+    
 
-    if ( !link?.url) {
+    if ( !link?.link) {
       throw new Error("No valid link found in Firestore");
     }
 
     const params = new URLSearchParams(formData).toString();
-    const response = await fetch(`${link.url}?${params}`, {
+    const response = await fetch(`${link.link}?${params}`, {
       method: "POST",
     });
 

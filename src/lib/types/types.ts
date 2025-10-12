@@ -3,11 +3,10 @@ import React from "react";
 
 export type ContactData = {
   email: string;
-  facebook: string;
-  instagram: string;
-  linkedin: string;
-  phone: string;
-  whatsapp: string;
+  gitHub: string;    // can be a URL or "github.com/username"
+  linkedin: string;  // can be an email, profile handle, or full URL
+  phone: string;     // local format e.g. "01157538463"
+  whatsapp: string;  // same as phone (you may keep international format if available)
 };
 export interface HomeData {
   title: { [key: string]: string };
@@ -25,7 +24,7 @@ export type Technology = {
 export  interface LinkDoc {
   createdAt: Date;   // Firestore timestamp → convert later
   name: string;
-  url: string;
+  link: string;
   value: boolean;
 }
 export interface Service {
@@ -59,4 +58,12 @@ export  interface Project {
   liveLink: string;
   src: string;
   category: string;
+}
+export interface TrainingExperience {
+  name: string;
+  field: string;
+  place: string;
+  startDate: string;
+  endDate: string;
+  isPresent: boolean;
 }
