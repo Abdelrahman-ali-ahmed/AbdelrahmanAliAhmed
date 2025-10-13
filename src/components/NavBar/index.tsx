@@ -31,7 +31,7 @@ export default function Navbar() {
   return (
     <Disclosure
       as="nav"
-      className="fixed top-0 left-0 w-full z-50 bg-gray-800/50 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10"
+      className="fixed top-0 left-0  w-full z-50 bg-gray-800/50 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10"
     >
       {({ open }) => (
         <>
