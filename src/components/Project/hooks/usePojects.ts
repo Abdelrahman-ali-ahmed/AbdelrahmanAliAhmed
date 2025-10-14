@@ -13,6 +13,8 @@ export default function useProjects() {
   const [loading, setLoading] = useState<boolean>(true);
   const [locale, setLocale] = useState<string>("en");
   const [key, setKey] = useState<"eng" | "ar">("eng");
+  const [deviceType, setDeviceType] = useState("desktop");
+  const [showAll, setShowAll] = useState(false);
 
   const projectTypes = [
     "all",
@@ -28,12 +30,31 @@ export default function useProjects() {
     fromFirestore: (snap) => snap.data() as Project,
   };
 
+  // Detect device type
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 957) {
+        setDeviceType("mobile");
+      } else if (window.innerWidth <= 1024) {
+        setDeviceType("tablet");
+      } else {
+        setDeviceType("desktop");
+      }
+    };
+
+    handleResize(); // Run once when mounted
+    window.addEventListener("resize", handleResize);
+    console.log("deviceType", deviceType);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Fetch data
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
 
-        // Get the locale from the browser (client-side)
+        // Get the locale from cookie (client-side)
         const browserLocale =
           document.cookie
             .split("; ")
@@ -47,15 +68,22 @@ export default function useProjects() {
         const colRef = collection(db, "data").withConverter(projectConverter);
         const snapshot = await getDocs(colRef);
 
-     const projects = snapshot.docs.map((doc) => {
-  const data = doc.data();
-  return { ...data, id: doc.id }; 
-}).filter((project)=> {
+        const projects = snapshot.docs
+          .map((doc) => {
+            const data = doc.data();
+            return { ...data, id: doc.id };
+          })
+          .filter((project) => {
             if (projectType === "all") return true;
             return project.category === projectType;
-        });
+          });
 
-        setData(projects);
+        // ✅ Limit to first 5 on mobile unless showAll = true
+        if (deviceType === "mobile" && !showAll) {
+          setData(projects.slice(0, 5));
+        } else {
+          setData(projects);
+        }
       } catch (error) {
         console.error("Error fetching projects:", error);
       } finally {
@@ -64,7 +92,18 @@ export default function useProjects() {
     };
 
     fetchData();
-  }, [projectType]);
+  }, [projectType, showAll, deviceType]);
 
-  return { t, data, projectTypes, projectType, setProjectType, loading, locale, key };
+  return {
+    t,
+    data,
+    projectTypes,
+    projectType,
+    setProjectType,
+    loading,
+    locale,
+    key,
+    showAll,
+    setShowAll,
+  };
 }

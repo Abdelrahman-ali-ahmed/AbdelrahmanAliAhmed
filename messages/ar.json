@@ -22,7 +22,7 @@
   "navigation": {
     "home": "الرئيسية",
     "about": "حول",
-    "services": "الخدمات",
+    "projects":"أعمالي",
     "portfolio": "أعمالنا",
     "blog": "المدونة",
     "contact": "اتصل بنا",
@@ -32,7 +32,9 @@
     "title": "الخدمات",
     "subtitle": "الخدمات"
   },"projects": {
-   "title": "أعمالنا"
+   "title": "أعمالنا",
+   "showMore": "عرض المزيد",
+   "showLess": "عرض أقل"
   },
   "experience":{
     "title": "الخبرات"

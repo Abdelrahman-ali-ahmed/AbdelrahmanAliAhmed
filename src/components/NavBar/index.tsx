@@ -9,7 +9,7 @@ import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import ThemeToggle from "../themeToggle";
 
-type NavKey = "home" | "about" | "services" | "contact";
+type NavKey = "home" | "about" | "projects" | "contact";
 
 export default function Navbar() {
   const t = useTranslations("navigation");
@@ -18,7 +18,7 @@ export default function Navbar() {
   const navigation: { name: NavKey; href: string }[] = [
     { name: "home", href: "/" },
     { name: "about", href: "#about" },
-    { name: "services", href: "#services" },
+    { name: "projects", href: "#projects" },
     { name: "contact", href: "#contact" },
   ];
 
