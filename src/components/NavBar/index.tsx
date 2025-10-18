@@ -54,7 +54,13 @@ export default function Navbar() {
               {/* Left side - Logo + Text */}
               <div className="flex items-center sm:flex-none flex-1 justify-center sm:justify-start">
                 <Link href="/" className="flex shrink-0 items-center gap-2">
-                  <p className="font-bold text-white text-lg">AbdelRahman</p>
+                  <Image
+                    src="/Logo.png"
+                    alt="Abdelrahman"
+                    width={60}
+                    height={60}
+                    className="rounded-full"
+                  />
                 </Link>
               </div>
 

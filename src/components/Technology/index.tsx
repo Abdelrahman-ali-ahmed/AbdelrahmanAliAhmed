@@ -7,6 +7,8 @@ import TechnologyList from "./TechnologyList";
 export default async function TechnologyComponent() {
   const { data, t } = await getTechnology();
 
+  
+
   return (
     <section className="py-12 container mx-auto px-6">
       {/* Title */}
