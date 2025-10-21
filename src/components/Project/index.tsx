@@ -21,6 +21,7 @@ export default function ProjectComponent() {
     setProjectType,
     loading,
     locale,
+    deviceType,
     setShowAll,
     showAll,
     key,
@@ -79,7 +80,7 @@ export default function ProjectComponent() {
             <ProjectList data={data} localeKey={key} />
 
             {/* 🔹 Show More / Show Less button */}
-            <div className="flex justify-center mt-8">
+            {deviceType === "mobile" && ( <div className="flex justify-center mt-8">
               <button
                 onClick={() => setShowAll((prev) => !prev)}
                 className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300
@@ -91,7 +92,8 @@ export default function ProjectComponent() {
               >
                 {showAll ? t("showLess") ?? "Show Less" : t("showMore") ?? "Show More"}
               </button>
-            </div>
+            </div>)}
+           
           </>
         )}
       </div>

@@ -52,6 +52,7 @@ export interface Customer {
 }
 export  interface Project {
   id: string;
+  createdAt: Timestamp;
   title: { ar: string; eng: string };
   content: { ar: string; eng: string };
   imageUrl: string;

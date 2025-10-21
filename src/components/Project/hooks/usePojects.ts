@@ -2,7 +2,7 @@
 
 import { db } from "@/lib/firebase/firebaseClient";
 import { localeMap, Project } from "@/lib/types/types";
-import { collection, getDocs, FirestoreDataConverter } from "firebase/firestore";
+import { collection, getDocs, FirestoreDataConverter, query, orderBy } from "firebase/firestore";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
@@ -65,22 +65,43 @@ export default function useProjects() {
         const mappedKey = (localeMap[browserLocale] ?? "eng") as "eng" | "ar";
         setKey(mappedKey);
 
-        const colRef = collection(db, "data").withConverter(projectConverter);
-        const snapshot = await getDocs(colRef);
+       const colRef = collection(db, "data").withConverter(projectConverter);
+const q = query(colRef, orderBy("createdAt", "desc"));
+const snapshot = await getDocs(q);
 
-        const projects = snapshot.docs
-          .map((doc) => {
-            const data = doc.data();
-            return { ...data, id: doc.id };
-          })
-          .filter((project) => {
-            if (projectType === "all") return true;
-            return project.category === projectType;
-          });
+        const categoryOrder = [
+  "Next",
+  "React + vite",
+  "React",
+  "Html + js + Css",
+  "Html + Css",
+];
+
+// Map and filter projects
+const projects = snapshot.docs
+  .map((doc) => ({ ...doc.data(), id: doc.id }))
+  .filter((project) => {
+    if (projectType === "all") return true;
+    return project.category === projectType;
+  })
+  .sort((a, b) => {
+    // Custom category sorting
+    const orderA = categoryOrder.indexOf(a.category);
+    const orderB = categoryOrder.indexOf(b.category);
+
+    // If both categories found, sort by custom order first
+    if (orderA !== -1 && orderB !== -1 && orderA !== orderB) {
+      return orderA - orderB;
+    }
+
+    // Then fallback to createdAt descending
+    return b.createdAt?.toMillis?.() - a.createdAt?.toMillis?.();
+  });
+
 
         // ✅ Limit to first 5 on mobile unless showAll = true
         if (deviceType === "mobile" && !showAll) {
-          setData(projects.slice(0, 5));
+          setData(projects.slice(0, 3));
         } else {
           setData(projects);
         }
@@ -104,6 +125,7 @@ export default function useProjects() {
     locale,
     key,
     showAll,
+    deviceType,
     setShowAll,
   };
 }
