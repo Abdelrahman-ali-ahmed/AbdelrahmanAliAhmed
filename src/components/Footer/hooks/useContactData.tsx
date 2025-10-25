@@ -34,7 +34,6 @@ export default function useContactData() {
 
     fetchContactData();
   }, []);
-
   const socialConfig: Record<
   keyof ContactData,
   { icon: React.ReactNode; buildHref?: (val: string) => string; isAction?: boolean }
@@ -45,7 +44,7 @@ export default function useContactData() {
   },
   gitHub: {
     icon: <Github className="h-5 w-5" />,
-    buildHref: (v) => (v.includes("github.com") ? v : `https://github.com/${v}`),
+    buildHref: (v) => (v.includes("https://github.com/") ? v : `https://${v}`),
   },
   whatsapp: {
     icon: <MessageCircle  className="h-5 w-5" />,

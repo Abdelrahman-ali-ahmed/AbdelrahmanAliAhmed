@@ -14,17 +14,21 @@ import ProjectList from "./ProjectList";
 
 export default function ProjectComponent() {
   const {
-    t,
+   t,
     data,
     projectTypes,
     projectType,
     setProjectType,
     loading,
     locale,
-    deviceType,
-    setShowAll,
-    showAll,
     key,
+    showAll,
+    setShowAll,
+    projectsPage,
+    setPage,
+    deviceType,
+    page,
+    totalPages,
   } = useProjects();
 
   return (
@@ -77,10 +81,10 @@ export default function ProjectComponent() {
           </div>
         ) : (
           <>
-            <ProjectList data={data} localeKey={key} />
+            <ProjectList data={data} localeKey={key} projectsPage={projectsPage} page={page} totalPages={totalPages} setPage={setPage} showAll={showAll} />
 
             {/* 🔹 Show More / Show Less button */}
-            {deviceType === "mobile" && ( <div className="flex justify-center mt-8">
+            { <div className="flex justify-center mt-8">
               <button
                 onClick={() => setShowAll((prev) => !prev)}
                 className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300
@@ -92,7 +96,7 @@ export default function ProjectComponent() {
               >
                 {showAll ? t("showLess") ?? "Show Less" : t("showMore") ?? "Show More"}
               </button>
-            </div>)}
+            </div>}
            
           </>
         )}

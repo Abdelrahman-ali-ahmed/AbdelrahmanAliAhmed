@@ -5,11 +5,20 @@ import { backgroundFirstColorDark, backgroundFirstColorLight, backgroundGradient
 import ProjectCard from "./Projectcard";
 
 export default function ProjectList({
-  data,
   localeKey,
+  projectsPage,
+  page,
+  totalPages,
+  setPage,
+  showAll,
 }: {
   data: Project[];
   localeKey: "eng" | "ar";
+  projectsPage: Project[][];
+  page: number;
+  totalPages: number;
+  showAll: boolean;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
 }) {
   const [activeProject, setActiveProject] = useState<Project  | null>(null);
 
@@ -20,7 +29,7 @@ export default function ProjectList({
         id="projects-grid"
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
       >
-        {data?.map((project, index) => (
+        {projectsPage[page]?.map((project, index) => (
           <ProjectCard  
             key={project.id}
             project={project}
@@ -30,6 +39,36 @@ export default function ProjectList({
           />
         ))}
       </div>
+      {showAll && <div className="flex items-center gap-3 w-full justify-center mt-7">
+  <button
+    onClick={() => setPage((prev) => Math.max(prev - 1, 0))}
+    disabled={page === 0}
+    className={`px-5 py-2 rounded ${backgroundFirstColorDark} ${backgroundSecondColorLight} ${
+      page === 0 ? "opacity-50 cursor-not-allowed" : ""
+    }`}
+  >
+    Previous
+  </button>
+
+  <p className="text-sm font-medium">
+    {page + 1} / {totalPages}
+  </p>
+
+  <button
+    onClick={() => setPage((prev) => Math.min(prev + 1, totalPages - 1))}
+    disabled={page === totalPages - 1 || totalPages === 0}
+    className={`px-5 py-2 rounded ${backgroundFirstColorDark} ${backgroundSecondColorLight} ${
+      page === totalPages - 1 || totalPages === 0
+        ? "opacity-50 cursor-not-allowed"
+        : ""
+    }`}
+  >
+    Next
+  </button>
+</div>
+}
+    
+
 
       {/* Modal */}
       {activeProject && (
