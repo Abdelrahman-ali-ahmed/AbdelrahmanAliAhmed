@@ -2,7 +2,6 @@ import { adminDb } from '@/lib/firebase/firebaseAdmin';
 import { localeMap, TrainingExperience } from '@/lib/types/types';
 import { getTranslations } from 'next-intl/server';
 import { cookies } from 'next/headers';
-import React from 'react'
 
 export default async function getExperience() {
     const t = await getTranslations("experience");

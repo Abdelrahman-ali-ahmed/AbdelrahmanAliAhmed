@@ -19,7 +19,7 @@ import Image from "next/image";
 import { FaLocationDot } from "react-icons/fa6";
 
 export default async function HomeComponent() {
-  const { title, content, CVLink, t } = await getPosts();
+  const { title, CVLink, t } = await getPosts();
 
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-black text-black dark:text-white transition-all duration-300 relative overflow-hidden">

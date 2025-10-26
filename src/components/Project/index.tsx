@@ -20,13 +20,11 @@ export default function ProjectComponent() {
     projectType,
     setProjectType,
     loading,
-    locale,
     key,
     showAll,
     setShowAll,
     projectsPage,
     setPage,
-    deviceType,
     page,
     totalPages,
   } = useProjects();
