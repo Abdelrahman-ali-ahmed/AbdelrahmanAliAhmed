@@ -55,7 +55,7 @@ export default function Navbar() {
               <div className="flex items-center sm:flex-none flex-1 justify-center sm:justify-start">
                 <Link href="/" className="flex shrink-0 items-center gap-2">
                   <Image
-                    src="/Logo.png"
+                    src="/favicon.png"
                     alt="Abdelrahman"
                     width={60}
                     height={60}

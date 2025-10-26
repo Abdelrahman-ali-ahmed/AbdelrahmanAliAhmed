@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Abdelrahman Ali Ahmed",
   description: "Frontend Developer .",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 // Root layout - required by Next.js App Router
