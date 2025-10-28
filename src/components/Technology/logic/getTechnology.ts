@@ -1,10 +1,16 @@
 import { adminDb } from "@/lib/firebase/firebaseAdmin";
+import { getDataFunc } from "@/lib/firebase/func/getDataFuction/GetDataFunc";
 import { Technology } from "@/lib/types/types";
 import { getTranslations } from "next-intl/server";
 
 export async function getTechnology() {
   const t = await getTranslations("technologies");
   const snapshot = await adminDb?.collection("Technologies").get();
+  const { data } = await getDataFunc<Technology[]>({
+    collectionName: "Technologies",
+  });
+console.log("tech",data);
+
 
   const technologies = snapshot?.docs.map((doc) => {
     const data = doc.data();
@@ -19,5 +25,6 @@ export async function getTechnology() {
     };
   });
   const techList = JSON.parse(JSON.stringify(technologies)) as Technology[];
+  console.log("techList",techList);
   return { data: techList, t };
 }

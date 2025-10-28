@@ -6,6 +6,10 @@ import { collection, getDocs, FirestoreDataConverter, query, orderBy } from "fir
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
+  const projectConverter: FirestoreDataConverter<Project> = {
+    toFirestore: (project: Project) => project,
+    fromFirestore: (snap) => snap.data() as Project,
+  };
 
 export default function useProjects() {
   const t = useTranslations("projects");
@@ -37,10 +41,7 @@ export default function useProjects() {
     "Html + js + Css",
   ];
 
-  const projectConverter: FirestoreDataConverter<Project> = {
-    toFirestore: (project: Project) => project,
-    fromFirestore: (snap) => snap.data() as Project,
-  };
+
 
   // ✅ Fetch data
   useEffect(() => {

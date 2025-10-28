@@ -68,3 +68,7 @@ export interface TrainingExperience {
   endDate: string;
   isPresent: boolean;
 }
+export interface CV {
+  url: string;
+  name: string;
+}
