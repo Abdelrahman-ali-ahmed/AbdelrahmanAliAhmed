@@ -34,7 +34,7 @@ export default function TechnologyList({ data }: { data: Technology[] }) {
       <div className="grid gap-6 grid-cols-[repeat(auto-fit,minmax(280px,1fr))] justify-center">
         {visibleTech?.map((technology) => (
           <div
-            key={technology.id}
+            key={technology.publicId}
             className="rounded-xl overflow-hidden cursor-pointer group transition-transform duration-300 hover:scale-105"
           >
             <div className="p-[2px] rounded-xl bg-gradient-to-r from-gray-300 to-gray-400 dark:from-gray-700 dark:to-gray-800 group-hover:from-blue-500 group-hover:to-purple-500 transition-all duration-300">

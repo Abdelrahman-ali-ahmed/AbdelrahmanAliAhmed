@@ -1,30 +1,13 @@
-import { adminDb } from "@/lib/firebase/firebaseAdmin";
 import { getDataFunc } from "@/lib/firebase/func/getDataFuction/GetDataFunc";
 import { Technology } from "@/lib/types/types";
 import { getTranslations } from "next-intl/server";
 
 export async function getTechnology() {
   const t = await getTranslations("technologies");
-  const snapshot = await adminDb?.collection("Technologies").get();
-  const { data } = await getDataFunc<Technology[]>({
-    collectionName: "Technologies",
+  const { data } = await getDataFunc<Technology>({collectionName: "Technologies",});
+  const techList = data?.map((item: Technology) => {
+    const createdAt = item.createdAt? typeof(item.createdAt) === "object" ? item.createdAt.toDate().toISOString(): item.createdAt : null;
+    return { ...item, createdAt };
   });
-console.log("tech",data);
-
-
-  const technologies = snapshot?.docs.map((doc) => {
-    const data = doc.data();
-    const createdAt = data.createdAt
-      ? new Date(data.createdAt._seconds * 1000).toISOString()
-      : null;
-
-    return {
-      id: doc.id,
-      ...data,
-      createdAt,
-    };
-  });
-  const techList = JSON.parse(JSON.stringify(technologies)) as Technology[];
-  console.log("techList",techList);
-  return { data: techList, t };
+  return {  data: techList ?? [], t };
 }

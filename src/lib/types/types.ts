@@ -17,9 +17,10 @@ export interface HomeData {
     ar: "ar",
   };
 export type Technology = {
-  id: string;
+  publicId: string;
   name: string;
   logo: string;
+  createdAt: Timestamp|string|null; 
 };
 export  interface LinkDoc {
   createdAt: Date;   // Firestore timestamp → convert later

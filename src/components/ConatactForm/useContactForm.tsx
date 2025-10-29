@@ -1,6 +1,8 @@
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { getTrueLinks } from "./getTrueLinks";
+import { getDataFunc } from "@/lib/firebase/func/getDataFuction/GetDataFunc";
+import { LinkDoc } from "@/lib/types/types";
 
 export default function useContactForm() {
   const t = useTranslations("contact"); 
@@ -29,9 +31,7 @@ export default function useContactForm() {
 
   try {
     const link  = await getTrueLinks();
-    console.log("link", link);
     
-
     if ( !link?.link) {
       throw new Error("No valid link found in Firestore");
     }
