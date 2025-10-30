@@ -1,13 +1,7 @@
+import { GetDataFuncProps, Operator } from "@/lib/types/types";
 import { adminDb } from "../../firebaseAdmin";
 
-type Operator = "==" | "!=" | ">" | "<" | ">=" | "<=";
 
-interface GetDataFuncProps {
-  collectionName: string;
-  docName?: string;
-  where?: { field: string; value: boolean; operator: Operator };
-  
-}
 
 // ✅ Overloads
 export async function getDataFunc<T>(props: { collectionName: string; docName: string }): Promise<{ data: T | null; }>;
@@ -17,7 +11,7 @@ export async function getDataFunc<T>(props: { collectionName: string; where: { f
 // ✅ Implementation
 export async function getDataFunc<T>({ collectionName, docName, where }: GetDataFuncProps): Promise<{ data: T | T[] | null;  }> {
 
-
+ 
   // 🟢 Handle WHERE queries first
   if (where?.field && where?.operator && where?.value !== undefined) {
     const colRef = adminDb?.collection(collectionName);

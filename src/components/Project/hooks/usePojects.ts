@@ -1,22 +1,17 @@
 "use client";
-
-import { db } from "@/lib/firebase/firebaseClient";
-import { localeMap, Project } from "@/lib/types/types";
-import { collection, getDocs, FirestoreDataConverter, query, orderBy } from "firebase/firestore";
+import { getDataClientFunc } from "@/lib/firebase/func/getDataFuction/GetDataClientFunc";
+import KeyClient from "@/lib/key/keyServer/KeyClient";
+import {  Project } from "@/lib/types/types";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
-  const projectConverter: FirestoreDataConverter<Project> = {
-    toFirestore: (project: Project) => project,
-    fromFirestore: (snap) => snap.data() as Project,
-  };
+
 
 export default function useProjects() {
   const t = useTranslations("projects");
   const [data, setData] = useState<Project[]>([]);
   const [projectType, setProjectType] = useState("all");
   const [loading, setLoading] = useState(true);
-  const [locale, setLocale] = useState("en");
   const [key, setKey] = useState<"eng" | "ar">("eng");
   const [showAll, setShowAll] = useState(false);
   const [page, setPage] = useState(0);
@@ -28,7 +23,7 @@ export default function useProjects() {
   const isMobile = useMediaQuery({ maxWidth: 767 });
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
   const isDesktop = useMediaQuery({ minWidth: 1024 });
-
+  const {key:mkey}= KeyClient();
   // ✅ Determine device type
   const [deviceType, setDeviceType] = useState<"mobile" | "tablet" | "desktop">("desktop");
 
@@ -48,21 +43,8 @@ export default function useProjects() {
     const fetchData = async () => {
       try {
         setLoading(true);
-
-        const browserLocale =
-          document.cookie
-            .split("; ")
-            .find((row) => row.startsWith("NEXT_LOCALE="))
-            ?.split("=")[1] ?? "en";
-
-        setLocale(browserLocale);
-        const mappedKey = (localeMap[browserLocale] ?? "eng") as "eng" | "ar";
-        setKey(mappedKey);
-
-        const colRef = collection(db, "data").withConverter(projectConverter);
-        const q = query(colRef, orderBy("createdAt", "desc"));
-        const snapshot = await getDocs(q);
-
+        const {data:test}=await getDataClientFunc<Project>({collectionName: "data",});
+        setKey(mkey);
         const categoryOrder = [
           "Next",
           "React + vite",
@@ -71,15 +53,15 @@ export default function useProjects() {
           "Html + Css",
         ];
 
-        const projects = snapshot.docs
-          .map((doc) => ({ ...doc.data(), id: doc.id }))
-          .filter((project) => (projectType === "all" ? true : project.category === projectType))
-          .sort((a, b) => {
-            const orderA = categoryOrder.indexOf(a.category);
-            const orderB = categoryOrder.indexOf(b.category);
-            if (orderA !== -1 && orderB !== -1 && orderA !== orderB) return orderA - orderB;
-            return b.createdAt?.toMillis?.() - a.createdAt?.toMillis?.();
-          });
+     const projects = ((test ?? []) as Project[])
+  .filter((project) => (projectType === "all" ? true : project.category === projectType))
+  .sort((a, b) => {
+    const orderA = categoryOrder.indexOf(a.category);
+    const orderB = categoryOrder.indexOf(b.category);
+    if (orderA !== -1 && orderB !== -1 && orderA !== orderB) return orderA - orderB;
+    return b.createdAt?.toMillis?.() - a.createdAt?.toMillis?.();
+  });
+
 
         setData(projects);
       } catch (error) {
@@ -90,7 +72,7 @@ export default function useProjects() {
     };
 
     fetchData();
-  }, [projectType, showAll]);
+  }, [projectType, showAll,mkey]);
 
   // ✅ Detect device type and adjust pagination
   useEffect(() => {
@@ -118,8 +100,6 @@ useEffect(() => {
   setTotalPages(pages.length);
 }, [data, projectsPerPage]);
 
-console.log(projectsPage);
-
 
   return {
     t,
@@ -128,7 +108,6 @@ console.log(projectsPage);
     projectType,
     setProjectType,
     loading,
-    locale,
     key,
     showAll,
     setShowAll,

@@ -1,4 +1,4 @@
-import { getDataFunc } from "@/lib/firebase/func/getDataFuction/GetDataFunc";
+import { getDataFunc } from "@/lib/firebase/func/getDataFuction/GetDataServerFunc";
 import { Technology } from "@/lib/types/types";
 import { getTranslations } from "next-intl/server";
 

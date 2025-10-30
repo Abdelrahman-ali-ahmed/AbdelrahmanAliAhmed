@@ -21,7 +21,6 @@ export default function ProjectList({
   setPage: React.Dispatch<React.SetStateAction<number>>;
 }) {
   const [activeProject, setActiveProject] = useState<Project  | null>(null);
-
   return (
     <>
       {/* Projects Grid */}
@@ -31,7 +30,7 @@ export default function ProjectList({
       >
         {projectsPage[page]?.map((project, index) => (
           <ProjectCard  
-            key={project.id}
+            key={project.publicId}
             project={project}
             delay={index * 50}
             lang={localeKey}

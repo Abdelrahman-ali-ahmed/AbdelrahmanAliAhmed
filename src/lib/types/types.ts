@@ -60,6 +60,7 @@ export  interface Project {
   liveLink: string;
   src: string;
   category: string;
+  publicId: string;
 }
 export interface TrainingExperience {
   name: string;
@@ -72,4 +73,12 @@ export interface TrainingExperience {
 export interface CV {
   url: string;
   name: string;
+} 
+export type Operator = "==" | "!=" | ">" | "<" | ">=" | "<=";
+
+export interface GetDataFuncProps {
+  collectionName: string;
+  docName?: string;
+  where?: { field: string; value: boolean; operator: Operator };
+  
 }

@@ -4,9 +4,6 @@ import { gradientColor, gradientTextColor } from "../Color";
 
 export default async function ExperienceComponent() {
   const { data, t, key } = await getExperience();
-  console.log("experience", data);
-  console.log("key", key);
-
   // Determine border and circle alignment for RTL/LTR
   const isArabic = key === "ar";
   const borderPosition = isArabic ? "border-r-2 pr-6" : "border-l-2 pl-6";

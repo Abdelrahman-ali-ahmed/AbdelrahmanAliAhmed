@@ -1,17 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { db } from "@/lib/firebase/firebaseClient";
-import { doc, getDoc, FirestoreDataConverter } from "firebase/firestore";
 import { ContactData } from "@/lib/types/types";
 import { Github, Linkedin, Mail, MessageCircle, Phone } from "lucide-react";
-
-// Firestore converter
-const contactConverter: FirestoreDataConverter<ContactData> = {
-  toFirestore: (data: ContactData) => data,
-  fromFirestore: (snap) => snap.data() as ContactData,
-};
- 
+import { getDataClientFunc } from "@/lib/firebase/func/getDataFuction/GetDataClientFunc";
 
 export default function useContactData() {
   const [contactData, setContactData] = useState<ContactData | null>(null);
@@ -20,10 +12,9 @@ export default function useContactData() {
   useEffect(() => {
     const fetchContactData = async () => {
       try {
-        const docRef = doc(db, "content", "contact").withConverter(contactConverter);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-          setContactData(docSnap.data());
+        const{data}=await getDataClientFunc<ContactData>({collectionName: "content", docName: "contact"});
+        if (data) {
+          setContactData(data);
         }
       } catch (error) {
         console.error("Error fetching contact data:", error);

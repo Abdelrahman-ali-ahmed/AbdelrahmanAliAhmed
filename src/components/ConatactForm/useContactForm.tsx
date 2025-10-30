@@ -1,8 +1,8 @@
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
-import { getTrueLinks } from "./getTrueLinks";
-import { getDataFunc } from "@/lib/firebase/func/getDataFuction/GetDataFunc";
 import { LinkDoc } from "@/lib/types/types";
+import { getDataClientFunc } from "@/lib/firebase/func/getDataFuction/GetDataClientFunc";
+
 
 export default function useContactForm() {
   const t = useTranslations("contact"); 
@@ -19,6 +19,7 @@ export default function useContactForm() {
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
   const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
   setLoading(true);
@@ -30,11 +31,15 @@ export default function useContactForm() {
   }
 
   try {
-    const link  = await getTrueLinks();
-    
+    const {data:link}=await getDataClientFunc<LinkDoc>({collectionName: "messageLink", docName: "link"});
     if ( !link?.link) {
       throw new Error("No valid link found in Firestore");
+
     }
+    
+    console.log("dataLink1",link);
+
+    
 
     const params = new URLSearchParams(formData).toString();
     const response = await fetch(`${link.link}?${params}`, {
