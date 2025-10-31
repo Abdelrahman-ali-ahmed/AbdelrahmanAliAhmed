@@ -1,9 +1,9 @@
 import React from "react";
-import { getPosts } from "../home/logic/getHome";
+import {getHome } from "../home/logic/getHome";
 import { backgroundFirstColorDark, backgroundSecondColorLight, gradientColorFirstTextLight, gradientColorSeconedTextDark} from "../Color";
 
 export default async function AboutComponent() {
-  const { title, content, t } = await getPosts();
+  const { title, content, t } = await getHome();
 
   return (
     <section

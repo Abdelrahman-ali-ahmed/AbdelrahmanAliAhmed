@@ -12,14 +12,14 @@ import {
   hoverButtonColorLight,
   gradientTextColor,
 } from "../Color";
-import { getPosts } from "./logic/getHome";
+import { getHome } from "./logic/getHome";
 import TypingText from "../TypingText";
 import NetworkBackgroundWrapper from "../NetworkBackground/NetworkBackgroundWrapper";
 import Image from "next/image";
 import { FaLocationDot } from "react-icons/fa6";
 
 export default async function HomeComponent() {
-  const { title, CVLink, t } = await getPosts();
+  const { title, CVLink, t } = await getHome();
 
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-black text-black dark:text-white transition-all duration-300 relative overflow-hidden">
@@ -36,13 +36,14 @@ export default async function HomeComponent() {
                 {t("title")}
               </h1>
 
-              <p className="text-md sm:text-xl text-gray-600 dark:text-gray-300">
-                <TypingText
-                  text1={title}
-                  text2={t("typing_string")}
-                  text3={t("typing_string2")}
-                />
-              </p>
+<p className="text-gray-600 dark:text-gray-300 w-full sm:w-[340px] md:w-[400px] min-h-[2rem] overflow-hidden whitespace-nowrap text-center md:text-left mx-auto md:mx-0">
+  <TypingText
+    text1={title}
+    text2={t("typing_string")}
+    text3={t("typing_string2")}
+  />
+</p>
+
 
               <p
                 className={`flex items-center justify-center md:justify-start w-fit text-lg sm:text-xl font-bold px-6 py-3 rounded-full ${backgroundSecondColorLight} ${backgroundFirstColorDark} text-white shadow-md`}
@@ -53,19 +54,19 @@ export default async function HomeComponent() {
             </div>
 
             {/* Right Side - Image */}
-            <div className="flex justify-center md:justify-end w-full md:w-1/2">
-              <div className="relative">
-                <div className="absolute -inset-2 bg-gradient-to-r from-[#0965C0] to-[#C53A94] rounded-full blur-lg opacity-40 animate-pulse" />
-                <Image
-                  src="/Abdelrahman.jpg"
-                  alt="Abdelrahman"
-                  width={220}
-                  height={220}
-                  className="rounded-full relative z-10 shadow-lg border-4 border-transparent dark:border-gray-800 w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 mt-5 md:mt-0"
-                  priority
-                />
-              </div>
-            </div>
+<div className="flex justify-center md:justify-end w-full md:w-1/2 mt-8 md:mt-0">
+  <div className="relative flex items-center justify-center w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64">
+    <div className="absolute inset-0 bg-gradient-to-r from-[#0965C0] to-[#C53A94] rounded-full blur-lg opacity-40 animate-pulse" />
+    <Image
+      src="/Abdelrahman.jpg"
+      alt="Abdelrahman"
+      fill
+      priority
+      sizes="(max-width: 640px) 10rem, (max-width: 768px) 12rem, (max-width: 1024px) 14rem, 16rem"
+      className="rounded-full relative z-10 shadow-lg border-4 border-transparent dark:border-gray-800 object-cover"
+    />
+  </div>
+</div>
           </div>
 
           {/* Buttons Section Below */}

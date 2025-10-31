@@ -3,7 +3,7 @@ import { KeyServer } from "@/lib/key/keyClient/KeyServer";
 import { CV, HomeData } from "@/lib/types/types";
 import { getTranslations } from "next-intl/server";
 
-export async function getPosts() {
+export async function getHome() {
 const t = await getTranslations("home");
 const {data}=await getDataFunc <HomeData>({ collectionName: "content", docName: "home" });
 const key=await KeyServer();
