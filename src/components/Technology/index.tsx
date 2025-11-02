@@ -14,9 +14,7 @@ export default async function TechnologyComponent() {
       >
         {t("title")}
       </h2>
-
-      {/* Client-side List */}
-      <TechnologyList data={data} />
+ <TechnologyList data={data} />
     </section>
   );
 }
