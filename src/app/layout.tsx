@@ -23,9 +23,15 @@ export const metadata: Metadata = {
   title: "Abdelrahman Ali Ahmed",
   description: "Frontend Developer.",
   icons: {
-    icon: "/favicon.png",
+    icon: [
+      { url: "/favicon.png", type: "image/x-icon", sizes: "16x16" },
+      { url: "/favicon.png", type: "image/png", sizes: "32x32" },
+    ],
   },
 };
+
+
+
 
 export default function RootLayout({
   children, 
