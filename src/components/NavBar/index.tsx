@@ -59,7 +59,9 @@ export default function Navbar() {
                     alt="Abdelrahman"
                     width={60}
                     height={60}
+                    priority
                     className="rounded-full"
+                    sizes="60px"
                   />
                 </Link>
               </div>

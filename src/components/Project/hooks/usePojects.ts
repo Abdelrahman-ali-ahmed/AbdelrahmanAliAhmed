@@ -38,7 +38,7 @@ export default function useProjects() {
 
 
 
-  // ✅ Fetch data
+  // ✅ Fetch data - optimized with requestIdleCallback
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -65,13 +65,26 @@ export default function useProjects() {
 
         setData(projects);
       } catch (error) {
-        console.error("Error fetching projects:", error);
+        // Error fetching projects - handled silently in production
+        if (process.env.NODE_ENV === 'development') {
+          console.error("Error fetching projects:", error);
+        }
       } finally {
         setLoading(false);
       }
     };
 
-    fetchData();
+    // Defer data fetching until browser is idle for better initial load
+    if (typeof window !== 'undefined') {
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(fetchData, { timeout: 1000 });
+      } else {
+        // Fallback: small delay to not block initial render
+        setTimeout(fetchData, 100);
+      }
+    } else {
+      fetchData();
+    }
   }, [projectType, showAll,mkey]);
 
   // ✅ Detect device type and adjust pagination

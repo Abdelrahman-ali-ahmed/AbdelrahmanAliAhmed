@@ -28,7 +28,9 @@ export default function TechnologyList({ data  }: { data: Technology[]  }) {
               alt={technology.name}
               width={80}
               height={80}
+              loading="lazy"
               className="object-contain"
+              sizes="80px"
             />
           </div>
         ))}

@@ -13,7 +13,7 @@ export default function HomeClient({ title, CVLink,}: { title: string; CVLink: s
 const NetworkBackgroundWrapper = dynamic(() => import("@/components/NetworkBackground/NetworkBackgroundWrapper"), { ssr: false });
  const t =useTranslations("home")
     return (
-    <div className="min-h-screen flex flex-col bg-white dark:bg-black text-black dark:text-white transition-all duration-300 relative overflow-hidden">
+    <div className="min-h-screen flex flex-col bg-white dark:bg-black text-black dark:text-white transition-colors duration-300 relative overflow-hidden">
       <NetworkBackgroundWrapper  />
 
       {/* Centered content */}
@@ -47,7 +47,14 @@ const NetworkBackgroundWrapper = dynamic(() => import("@/components/NetworkBackg
             {/* Right Side - Image */}
 <div className="flex justify-center md:justify-end w-full md:w-1/2 mt-8 md:mt-0">
   <div className="relative flex items-center justify-center w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64">
-    <div className="absolute inset-0 bg-gradient-to-r from-[#0965C0] to-[#C53A94] rounded-full blur-lg opacity-40 animate-pulse" />
+    <div 
+      className="absolute inset-0 bg-gradient-to-r from-[#0965C0] to-[#C53A94] rounded-full blur-lg opacity-40" 
+      style={{ 
+        animation: 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        willChange: 'opacity',
+        transform: 'translateZ(0)', // GPU acceleration
+      }} 
+    />
     <Image
       src="/Abdelrahman.jpg"
       alt="Abdelrahman"
@@ -55,6 +62,7 @@ const NetworkBackgroundWrapper = dynamic(() => import("@/components/NetworkBackg
       priority
       sizes="(max-width: 640px) 10rem, (max-width: 768px) 12rem, (max-width: 1024px) 14rem, 16rem"
       className="rounded-full relative z-10 shadow-lg border-4 border-transparent dark:border-gray-800 object-cover"
+      style={{ willChange: 'auto' }}
     />
   </div>
 </div>

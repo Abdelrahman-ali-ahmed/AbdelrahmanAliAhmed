@@ -17,7 +17,10 @@ if (shouldInitializeFirebase && !admin.apps.length) {
       }),
     });
   } catch (error) {
-    console.warn("⚠️ Firebase Admin initialization failed:", error);
+    // Firebase Admin initialization failed - handled silently in production
+    if (process.env.NODE_ENV === 'development') {
+      console.warn("⚠️ Firebase Admin initialization failed:", error);
+    }
   }
 }
 

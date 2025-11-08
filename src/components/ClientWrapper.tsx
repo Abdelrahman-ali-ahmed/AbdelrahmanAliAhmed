@@ -7,20 +7,23 @@ interface ClientWrapperProps {
 }
 
 export default function ClientWrapper({ children }: ClientWrapperProps) {
-  const [_mounted, set_mounted] = useState(false);
-
   useEffect(() => {
-    set_mounted(true);
+    // Use requestIdleCallback for non-critical hydration
+    if (typeof window !== 'undefined') {
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(() => {
+          // Hydration complete - could be used for analytics or other side effects
+        }, { timeout: 1 });
+      } else {
+        // Fallback for browsers without requestIdleCallback
+        setTimeout(() => {
+          // Hydration complete - could be used for analytics or other side effects
+        }, 0);
+      }
+    }
   }, []);
 
-  if (!_mounted) {
-    // Return a placeholder that matches the server-rendered content
-    return (
-      <div className="min-h-screen flex flex-col bg-white text-black transition-all duration-300">
-        {children}
-      </div>
-    );
-  }
-
+  // Return children immediately - no blocking render
+  // This prevents unnecessary re-renders and improves performance
   return <>{children}</>;
 }

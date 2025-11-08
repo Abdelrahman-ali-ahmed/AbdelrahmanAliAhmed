@@ -2,12 +2,22 @@ import { getDataFunc } from "@/lib/firebase/func/getDataFuction/GetDataServerFun
 import { Technology } from "@/lib/types/types";
 import { getTranslations } from "next-intl/server";
 
-export async function getTechnology() {
-  const t = await getTranslations("technologies");
-  const { data } = await getDataFunc<Technology>({collectionName: "Technologies",});
-  const techList = data?.map((item: Technology) => {
+import { cache } from 'react';
+
+const getCachedTechnology = cache(async () => {
+  const [t, techResult] = await Promise.all([
+    getTranslations("technologies"),
+    getDataFunc<Technology>({collectionName: "Technologies"})
+  ]);
+  
+  const techList = techResult.data?.map((item: Technology) => {
     const createdAt = item.createdAt? typeof(item.createdAt) === "object" ? item.createdAt.toDate().toISOString(): item.createdAt : null;
     return { ...item, createdAt };
   });
-  return {  data: techList ?? [], t };
+  
+  return { data: techList ?? [], t };
+});
+
+export async function getTechnology() {
+  return getCachedTechnology();
 }

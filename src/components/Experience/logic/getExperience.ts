@@ -3,10 +3,22 @@ import { KeyServer } from '@/lib/key/keyClient/KeyServer';
 import { TrainingExperience } from '@/lib/types/types';
 import { getTranslations } from 'next-intl/server';
 
-export default async function getExperience() {
-  const t = await getTranslations("experience");
-  const { data: experiences } = await getDataFunc<TrainingExperience>({collectionName: "Experiences",});
-  const key=await KeyServer();
-  const sortedExperiences = (experiences ?? []).sort((a, b) => new Date(b.endDate).getTime() - new Date(a.endDate).getTime());
+import { cache } from 'react';
+
+const getCachedExperience = cache(async () => {
+  const [t, key, experiencesResult] = await Promise.all([
+    getTranslations("experience"),
+    KeyServer(),
+    getDataFunc<TrainingExperience>({collectionName: "Experiences"})
+  ]);
+  
+  const sortedExperiences = (experiencesResult.data ?? []).sort(
+    (a, b) => new Date(b.endDate).getTime() - new Date(a.endDate).getTime()
+  );
+  
   return { data: sortedExperiences, t, key };
+});
+
+export default async function getExperience() {
+  return getCachedExperience();
 }

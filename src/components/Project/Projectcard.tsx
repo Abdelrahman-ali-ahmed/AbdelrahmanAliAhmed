@@ -19,24 +19,31 @@ export default function ProjectCard({ project, delay, lang, onClick }: ProjectCa
     const card = cardRef.current;
     if (!card) return;
 
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const { width, height } = rect;
+    // Use requestAnimationFrame to batch DOM updates and prevent forced reflow
+    requestAnimationFrame(() => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const { width, height } = rect;
 
-    const rotateX = (y / height - 0.9) * -30;
-    const rotateY = (x / width - 0.9) * 30;
+      const rotateX = (y / height - 0.9) * -30;
+      const rotateY = (x / width - 0.9) * 30;
 
-    card.style.transition = "none";
-    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      // Use CSS custom properties for better performance
+      card.style.setProperty('--rotate-x', `${rotateX}deg`);
+      card.style.setProperty('--rotate-y', `${rotateY}deg`);
+    });
   };
 
   const handleMouseLeave = () => {
     const card = cardRef.current;
     if (!card) return;
 
-    card.style.transition = "transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)";
-    card.style.transform = "rotateX(0deg) rotateY(0deg)";
+    // Reset transform using CSS custom properties
+    requestAnimationFrame(() => {
+      card.style.setProperty('--rotate-x', '0deg');
+      card.style.setProperty('--rotate-y', '0deg');
+    });
   };
 
   return (
@@ -45,9 +52,13 @@ export default function ProjectCard({ project, delay, lang, onClick }: ProjectCa
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onClick={() => onClick(project)}
-      style={{ transitionDelay: `${delay}ms` }}
+      style={{ 
+        transitionDelay: `${delay}ms`,
+        transform: 'perspective(1000px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg))',
+        willChange: 'transform', // Optimize for animations
+      }}
       className={`glass-effect p-6 rounded-2xl reveal card-glow flex flex-col items-center text-center cursor-pointer border-4 
-      border-transparent ${gradientColorBorderHoverLight}  ${gradientColorBorderHoverDark } ${backgroundSecondColorLight} ${backgroundFirstColorDark} shadow-lg transition-all duration-300`}
+      border-transparent ${gradientColorBorderHoverLight}  ${gradientColorBorderHoverDark } ${backgroundSecondColorLight} ${backgroundFirstColorDark} shadow-lg transition-transform duration-300 ease-out`}
     >
       <div className="w-full h-40 rounded-xl overflow-hidden mb-5">
         <Image
@@ -55,7 +66,9 @@ export default function ProjectCard({ project, delay, lang, onClick }: ProjectCa
           alt={project?.title["eng"]}
           width={240}
           height={160}
+          loading="lazy"
           className="w-full h-full object-cover rounded-xl"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
 

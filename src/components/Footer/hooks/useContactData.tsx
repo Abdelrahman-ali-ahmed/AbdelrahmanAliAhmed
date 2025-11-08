@@ -17,7 +17,10 @@ export default function useContactData() {
           setContactData(data);
         }
       } catch (error) {
-        console.error("Error fetching contact data:", error);
+        // Error handled silently in production
+        if (process.env.NODE_ENV === 'development') {
+          console.error("Error fetching contact data:", error);
+        }
       } finally {
         setLoading(false);
       }

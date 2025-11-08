@@ -1,4 +1,4 @@
-import { db } from "@/lib/firebase/firebaseClient";
+import { getDbInstance } from "@/lib/firebase/firebaseClient";
 import { GetDataFuncProps } from "@/lib/types/types";
 import { collection, doc, getDoc, getDocs,} from "firebase/firestore";
 
@@ -9,6 +9,9 @@ export async function getDataClientFunc<T>({
   docName,
 }: GetDataFuncProps): Promise<{ data: T | T[] | null }> {
   try {
+    // Lazy load Firebase - only initialize when needed
+    const db = getDbInstance();
+    
     // 🟢 Handle single document
     if (docName) {
       const docRef = doc(db, collectionName, docName);
@@ -22,7 +25,10 @@ export async function getDataClientFunc<T>({
     const data = snap.docs.map((d) => d.data() as T);
     return { data };
   } catch (error) {
-    console.error("Error in getDataClientFunc:", error);
+    // Error handled silently in production
+    if (process.env.NODE_ENV === 'development') {
+      console.error("Error in getDataClientFunc:", error);
+    }
     return { data: null };
   }
 }

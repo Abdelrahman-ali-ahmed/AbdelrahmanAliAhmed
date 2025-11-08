@@ -37,7 +37,7 @@ export default function useContactForm() {
 
     }
     
-    console.log("dataLink1",link);
+    // Link loaded successfully
 
     
 
